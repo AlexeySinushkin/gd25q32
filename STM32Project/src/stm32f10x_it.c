@@ -40,7 +40,13 @@
 /*            Cortex-M3 Processor Exceptions Handlers                         */
 /******************************************************************************/
 
-
+void SPI1_IRQHandler(void)
+{
+  //if (SPI_I2S_GetITStatus(SPI1, SPI_I2S_IT_TXE) != RESET)
+  //{
+  
+  //}  
+}
 
 /**
   * @brief  This function handles ADC1 global interrupts requests.

@@ -64,7 +64,7 @@ void NVIC_Configuration(void)
 	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 2;
 	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
 	NVIC_Init(&NVIC_InitStructure);
-
+/*
     // Connect Button EXTI Line to Button GPIO Pin /
     GPIO_EXTILineConfig(GPIO_PortSourceGPIOA, GPIO_PinSource0);
     // Configure Button EXTI line /
@@ -81,7 +81,7 @@ void NVIC_Configuration(void)
     NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
     NVIC_Init(&NVIC_InitStructure); 
 	
-
+*/
 }
 
 void led_blink(u8 tn)

@@ -213,3 +213,9 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+
+Altium/History*
+Altium/ST Microcontroller 32-Bit STM32/History*
+Altium/Project Logs*
+Altium/Project Outputs*
+Altium/CAMtastic1.Cam
