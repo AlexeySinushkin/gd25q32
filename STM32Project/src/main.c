@@ -54,7 +54,7 @@ void RCC_Config()
 void NVIC_Configuration(void)
 {
   NVIC_InitTypeDef NVIC_InitStructure;
-  EXTI_InitTypeDef EXTI_InitStructure;    
+  //EXTI_InitTypeDef EXTI_InitStructure;    
 
 	/* 1 bit for pre-emption priority, 3 bits for subpriority */
 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_1);

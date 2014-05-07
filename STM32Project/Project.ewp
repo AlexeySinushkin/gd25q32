@@ -301,6 +301,7 @@
           <state>.\inc</state>
           <state>..\inc</state>
           <state>.\FreeRTOS</state>
+          <state>.\StdPerphLib</state>
         </option>
         <option>
           <name>CCStdIncCheck</name>

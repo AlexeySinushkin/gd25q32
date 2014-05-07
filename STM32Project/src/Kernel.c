@@ -17,11 +17,11 @@ __IO u8 RF_Buffer_Cmd[3];
 #define RF_GPIO_RESET           GPIO_Pin_3
 
 
-#define SPI_NSS              GPIO_Pin_4
+#define SPI_Nss              GPIO_Pin_4
 #define SPI_SCK             GPIO_Pin_5
 #define SPI_MISO             GPIO_Pin_6
 #define SPI_MOSI             GPIO_Pin_7   
-#define SPI_HOLD             GPIO_Pin_12
+#define SPI_NHold             GPIO_Pin_12
 #define SPI_WP             GPIO_Pin_11
 #define SPI_GPIO            GPIOA
 
@@ -83,18 +83,18 @@ void Init(void)
 	GPIO_InitTypeDef  GPIO_SpiStructure;
 	//Configure SPI_MASTER pins: SCK, MISO and MOSI
 	GPIO_SpiStructure.GPIO_Pin = SPI_SCK | SPI_MISO | 
-		SPI_MOSI | SPI_NSS;
+		SPI_MOSI | SPI_Nss;
 	GPIO_SpiStructure.GPIO_Speed = GPIO_Speed_50MHz;
 	GPIO_SpiStructure.GPIO_Mode = GPIO_Mode_AF_PP;
 	GPIO_Init(SPI_GPIO, &GPIO_SpiStructure);
 	
 	GPIO_InitTypeDef  GPIO_SpiStructure2;
-	GPIO_SpiStructure2.GPIO_Pin = SPI_HOLD | SPI_WP;  
+	GPIO_SpiStructure2.GPIO_Pin = SPI_NHold | SPI_WP;  
 	GPIO_SpiStructure2.GPIO_Speed = GPIO_Speed_50MHz;  
 	GPIO_SpiStructure2.GPIO_Mode =  GPIO_Mode_Out_PP;
 	GPIO_Init(SPI_GPIO, &GPIO_SpiStructure2);
 	
-	SPI_GPIO->BSRR=SPI_HOLD;
+	SPI_GPIO->BSRR=SPI_NHold;
 	SPI_GPIO->BSRR=SPI_WP;  
 
 
@@ -104,38 +104,38 @@ void Init(void)
 
 
 
-//0 конфигурируется
-//1 закончено
-u8 ConfigFramRegi(const u8* configTable, u8 configSize)
+u8 send1_receive1(u8 data)
 {
-	/*if (State_RF.RF_TransferState==RF_NoTransfering)
-	{
-		u8 index=State_RF.RF_Tmp*3;  //индекс регистра по порядку  
-		RF_Buffer_Cmd[0]=configTable[index];
-		RF_Buffer_Cmd[1]=configTable[index+1];	
-		RF_Buffer_Cmd[2]=configTable[index+2];
-		State_RF.RF_BufPtr=&RF_Buffer_Cmd[0];
-		State_RF.RF_BufCount=3;
-		State_RF.RF_BufIndex=0;
-		State_RF.RF_TransferDirection=RF_TD_Write;
-		SPI_I2S_ITConfig(SPI1, SPI_I2S_IT_TXE, ENABLE);
-		return 0;
-	}
-	
-	//происходит прерывание на передачу
-	
-	if (State_RF.RF_TransferState==RF_TransferComplete)
-	{
-	  State_RF.RF_Tmp++;
-	  State_RF.RF_TransferState=RF_NoTransfering;
-		//сконфигурировали, переходим к проверке
-		if (((configSize/3)==State_RF.RF_Tmp)){		
-			State_RF.RF_Tmp=0;	
-			return 1;
-		}		  
-	}
-  */
-	return 0;
+  SPI_I2S_ITConfig(SPI1, SPI_I2S_IT_TXE, ENABLE);
+  //шлем команду
+  SPI_I2S_SendData(SPI1, data);
+  while (SPI_I2S_GetITStatus(SPI1, SPI_I2S_IT_TXE) == RESET){
+    vTaskDelay(1);
+  }
+  
+  
+  SPI_I2S_ITConfig(SPI1, SPI_I2S_IT_RXNE, ENABLE);    
+  //SPI_I2S_ClearFlag(SPI1, SPI_I2S_FLAG_RXNE);
+  //send dummy
+  SPI_I2S_SendData(SPI1, 0xFF);
+  //Receive buffer not empty interrupt.
+  while (SPI_I2S_GetITStatus(SPI1, SPI_I2S_IT_RXNE) == RESET){
+    vTaskDelay(1);
+  }
+  u8 tmp = SPI_I2S_ReceiveData(SPI1);
+  
+  SPI_I2S_ITConfig(SPI1, SPI_I2S_IT_TXE, DISABLE); 
+  SPI_I2S_ITConfig(SPI1, SPI_I2S_IT_RXNE, DISABLE);   
+  
+  return tmp;
+
+}
+
+u16 GD_READ_Status()
+{
+  u16 tmp=0;
+  tmp=send1_receive1(0x05);//low part
+  return tmp;
 }
 
 
@@ -145,22 +145,12 @@ void vTaskKernel(void *pvParameters) {
  
 
   for(;;){
-    
-
+    u16 tmp = GD_READ_Status();
+    if(tmp==5){
+      vTaskDelay(1);
+    }
     vTaskDelay(100);
   }
-}
-
-u8 GD_READ_Status_Low()
-{
-  u8 tmp=0;
-  SPI_I2S_ITConfig(SPI1, SPI_I2S_IT_TXE, ENABLE);
-  SPI_I2S_SendData(SPI1, 0x05);
-  while (SPI_I2S_GetITStatus(SPI1, SPI_I2S_IT_TXE) == RESET){
-    vTaskDelay(1);
-  }
-  SPI_I2S_ITConfig(SPI1, SPI_I2S_IT_TXE, DISABLE);	
-  return tmp
 }
 
 /*
