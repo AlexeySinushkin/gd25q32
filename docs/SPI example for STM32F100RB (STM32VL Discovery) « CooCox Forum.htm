@@ -1,0 +1,666 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<!-- saved from url=(0044)http://www.coocox.org/forum/topic.php?id=994 -->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml" xml:lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="text/javascript" src="./SPI example for STM32F100RB (STM32VL Discovery) « CooCox Forum_files/auth016.js"></script><link rel="stylesheet" type="text/css" href="./SPI example for STM32F100RB (STM32VL Discovery) « CooCox Forum_files/widget120.css" media="all">
+	
+	<title>SPI example for STM32F100RB (STM32VL Discovery) « CooCox Forum</title>
+	<meta name="Keywords" content="ARM community, ARM Cortex M3 Forum, ARM Cortex M0 Forum, comment, question, suggestion, bug, Atmel, ST, NXP, TI, Toshiba, gcc, iar, keil, library, Linux, Luminary, LwIP, openOCD, Ubuntu, stm32f100, lm3s, lpc17xx, lpc1768, lpc1766, stm32f103rb, sam3u, ">
+	<meta name="description" content="CooCox Forum provides a free to talk platform for embedded developers exchange their questions and ideas. Users here could get the newest CooCox software information, report bugs and give CooCox function suggestions, communicate with top engineers over the world, share your example code through CoBuilder, download the limited and undeclared resource.  ">
+
+	<link rel="alternate" type="application/rss+xml" title="CooCox Forum » Topic: SPI example for STM32F100RB (STM32VL Discovery)" href="http://www.coocox.org/forum/rss.php?topic=994"><meta name="generator" content="bbPress 1.0.2">
+<style type="text/css">.topic_icons {width:16px; height:16px; text-decoration:none; border: 0; padding: 1px; vertical-align: text-top; background:none;}</style>
+    	<link rel="stylesheet" href="./SPI example for STM32F100RB (STM32VL Discovery) « CooCox Forum_files/style.css" type="text/css">
+            <link rel="stylesheet" href="./SPI example for STM32F100RB (STM32VL Discovery) « CooCox Forum_files/login.css" type="text/css">
+  <link rel="stylesheet" href="./SPI example for STM32F100RB (STM32VL Discovery) « CooCox Forum_files/page.css" type="text/css">
+<style>#ptd {padding:1px 0px 2px 0px;height:25px !important;height:20px;}</style>
+<script language="javascript">
+    function showdiv(pre)
+    {
+	var tbl= document.getElementById(pre);
+	if (tbl.style.display=="block")
+	{
+	tbl.style.display="none";
+	}
+	else{
+	tbl.style.display="block";
+	}
+
+	}</script><script language="javascript">
+function CongHuaInput(CongHua)
+{ 
+    window.open(CongHua.value,'_self');
+}
+</script><script type="text/javascript" src="./SPI example for STM32F100RB (STM32VL Discovery) « CooCox Forum_files/jquery.min.js"></script><script type="text/javascript" src="./SPI example for STM32F100RB (STM32VL Discovery) « CooCox Forum_files/download_zh.js"></script><script type="text/javascript" src="./SPI example for STM32F100RB (STM32VL Discovery) « CooCox Forum_files/jquery.blockUI.js"></script><script type="text/javascript" src="./SPI example for STM32F100RB (STM32VL Discovery) « CooCox Forum_files/ucenter.js"></script></head>
+    
+
+
+
+
+
+<body id="topic-page">
+	
+<div id="body-container">
+	<div class="top" style="width:100% !important;width:100%;">
+        <div class="logo"><img src="./SPI example for STM32F100RB (STM32VL Discovery) « CooCox Forum_files/coocox.gif" width="165" height="47" style="margin-bottom:0px;"></div>
+         <div class="indextitle">
+  <h1 style="color:#333333;">ARM Cortex MCU Development Tools</h1></div><div class="indextitleselect">  
+    <span style="font-size:12px; font-weight:normal;">  更换语言：  </span>   <select onchange="CongHuaInput(this)">
+        <option value="http://www.coocox.org/forum/index.php?language=en" selected="selected">English</option> 
+<option value="http://www.coocox.org/forum/index.php?language=zh">中文</option> </select>
+</div>
+     </div>
+      <div style="width:100% !important;width:100%; height:1px; background-color:#6b90da; overflow:hidden; margin-top:5px;border-bottom:solid #fff 1px;"> </div>
+	<div id="container">
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" style="padding:0px; margin:0px;">
+      <tbody><tr>
+        <td valign="top" style="width:14% !important;width:15%;FILTER: progid:DXImageTransform.Microsoft.Gradient(gradientType=0,startColorStr=#ebeff9,endColorStr=#FFFFFF);background-image:url(images/leftbg.gif); background-repeat:repeat-x; padding:0px; margin:0px;height:650px !important;height:650px;">
+    
+        
+           
+             
+                    <div id="leftcolumn">
+  <dl class="dropdown" style="margin:0px; padding:0px;">
+    <dt id="one-ddheader" class="upperdd"><a href="http://www.coocox.org/Index.html">Home</a></dt>
+  </dl>
+    
+  <dl class="dropdown">
+    <dt id="three-ddheader" class="upperdd">Software Tools</dt>
+  </dl>
+
+    <dl class="dropdown" style="margin:0px; padding:0px;">
+    <dt id="five-ddheader" class="upperddsub"><a href="http://www.coocox.org/CooCox_CoIDE.htm" class="point">CoIDE</a></dt>
+  </dl>  
+      <dl class="dropdown" style="margin:0px; padding:0px;">
+    <dt id="six-ddheader" class="upperddsub"><a href="http://www.coocox.org/CoFlash_Programmer.htm">CoFlash</a></dt>
+  </dl>
+    <dl class="dropdown" style="margin:0px; padding:0px;">
+    <dt id="seven-ddheader" class="upperddsub"><a href="http://www.coocox.org/CoSmart.html">CoSmart</a></dt>
+  </dl>
+      <dl class="dropdown" style="margin:0px; padding:0px;">
+    <dt id="seven-ddheader" class="upperddsub"><a href="http://www.coocox.org/CoAssistant.htm">CoAssistant</a></dt>
+  </dl>
+      <dl class="dropdown">
+    <dt id="three-ddheader" class="upperdd">Source Code</dt>
+  </dl>
+  <dl class="dropdown" style="margin:0px; padding:0px;">
+    <dt id="three-ddheader" class="upperddsub"><a href="http://www.coocox.org/CoOS.htm">CoOS</a></dt>
+  </dl>
+  <dl class="dropdown" style="margin:0px; padding:0px;">
+    <dt id="eight-ddheader" class="upperddsub"><a href="http://www.coocox.org/COX.html">COX</a></dt>
+  </dl>
+  <dl class="dropdown" style="margin:0px; padding:0px;">
+    <dt id="eight-ddheader" class="upperddsub"><a href="http://www.coocox.org/driver.html">Components</a></dt>
+  </dl>
+  <dl class="dropdown">
+    <dt class="upperddsub" id="nine-ddheader"><a href="http://www.coocox.org/plan.php?language=en" class="point">Driver Project</a></dt>
+  </dl>
+     
+   <dl class="dropdown">
+    <dt id="three-ddheader" class="upperdd">Hardware </dt>
+  </dl>
+
+  <dl class="dropdown" style="margin:0px; padding:0px;">
+    <dt class="upperddsub" id="four-ddheader"><a href="http://www.coocox.org/epi.html" class="point">Embedded Pi</a></dt>
+  </dl>
+     <dl class="dropdown" style="margin:0px; padding:0px;">
+    <dt id="five-ddheader" class="upperddsub"><a href="http://www.coocox.org/Cookie.html">Cookie</a></dt>
+  </dl>  
+         <dl class="dropdown">
+    <dt id="four-ddheader" class="upperddsub"><a href="http://www.coocox.org/cooperkit.html">Add-ons - CooperKit</a></dt>
+  </dl>
+
+    <dl class="dropdown" style="margin:0px; padding:0px;">
+    <dt id="two-ddheader" class="upperddsub"><a href="http://www.coocox.org/Colink.htm">Colink</a>&nbsp;&nbsp;<a>/</a>&nbsp;&nbsp;<a href="http://www.coocox.org/Colinkex.htm">CoLinkEx</a></dt>   
+  </dl>  
+	 <dl class="dropdown">
+    <dt id="nine-ddheader" class="upperdd">Community </dt>
+  </dl>
+
+   <dl class="dropdown" style="margin:0px; padding:0px;">
+    <dt id="nine-ddheader" class="upperddsub"><a href="http://www.coocox.org/forum/index.php" class="forum">Forum</a></dt>
+  </dl>
+     <dl class="dropdown">
+    <dt id="nine-ddheader" class="upperddsub"><a href="http://www.coocox.org/blog/?cat=37" target="_blank" class="forum">Blog</a></dt>
+  </dl>
+
+</div>
+
+                 <div style="clear:both"></div>
+       <div style="width:11% !important;width:85%;height:155px !important;height:150px; position:absolute; top:650px; left:10px;border:solid 1px #6b90da;"> <div style="background-color:#6b90da; color:#FFFFFF; width:100%; font-weight:bold;">&nbsp;&nbsp;&nbsp;Contact Us</div>
+                 <ul style="padding-left:8px; padding-bottom:0px; "> 
+                 <li style="list-style:none; padding-left:0px;margin-top:10px;font-size:12px; color:#0033CC;"><strong>Follow CooCox</strong></li>
+                 <li style="list-style:none;margin-top:5px; margin-left:10px; margin-bottom:5px;">
+                   <a href="http://twitter.com/CooCox_CoCo" target="_blank"><img src="./SPI example for STM32F100RB (STM32VL Discovery) « CooCox Forum_files/t.jpg" width="16" height="16" border="0"></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.facebook.com/update_security_info.php?wizard=1#!/profile.php?id=100001946751564" target="_blank"><img src="./SPI example for STM32F100RB (STM32VL Discovery) « CooCox Forum_files/facebook_thumb.png" width="16" height="16" border="0"></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.linkedin.com/groups/Free-Open-ARM-CortexM-development-3807963?mostPopular=&gid=3807963" target="_blank"><img src="./SPI example for STM32F100RB (STM32VL Discovery) « CooCox Forum_files/linkedin.png" width="16" height="16" border="0"></a></li>
+                   <li style="list-style:none;margin-top:5px;font-size:12px; color:#0033CC;"><strong>CooCox Market</strong></li>
+<li style="list-style:none;margin-top:5px;margin-left:10px; margin-bottom:5px;"><a href="skype: coocox.chloe?chat"><img src="./SPI example for STM32F100RB (STM32VL Discovery) « CooCox Forum_files/16_skype.gif" width="16" height="16" border="0"></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="msnim:chat?contact=CoCo.Lee87@hotmail.com"><img src="./SPI example for STM32F100RB (STM32VL Discovery) « CooCox Forum_files/msn.gif" width="16" height="16" border="0"></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:Chloe@coocox.com"><img src="./SPI example for STM32F100RB (STM32VL Discovery) « CooCox Forum_files/mail.gif" width="16" height="11" border="0"></a>             </li>
+               <li style="list-style:none;margin-top:5px;font-size:12px; color:#0033CC;"><strong>Tech Support</strong></li>
+                 <li style="list-style:none;margin-top:5px;margin-left:10px; "><a href="skype:master_coocox?chat"><img src="./SPI example for STM32F100RB (STM32VL Discovery) « CooCox Forum_files/16_skype.gif" width="16" height="16" border="0"></a> &nbsp;&nbsp; <a href="mailto:Master@coocox.com"><img src="./SPI example for STM32F100RB (STM32VL Discovery) « CooCox Forum_files/mail.gif" width="16" height="11" border="0"></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.coocox.com/Forum/forum.php?id=1" target="_blank"><img src="./SPI example for STM32F100RB (STM32VL Discovery) « CooCox Forum_files/forumicon.jpg" width="16" height="16" border="0"></a></li>
+           </ul></div>
+    </td>
+        <td valign="top" style="padding:0px; margin:0px;">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" style="padding:0px; margin:0px;">
+                <tbody><tr>
+                    <td id="ptd" width="50%" style="text-indent:5px;FILTER: progid:DXImageTransform.Microsoft.Gradient(gradientType=0,startColorStr=#ebeff9,endColorStr=#FFFFFF);border-bottom:#ebeff9 solid 1px; border-left:#ebeff9 solid 1px; background-image:url(images/menubg.gif); color:#0000CC; font-size:13px;">
+                    <a href="http://www.coocox.org/"><strong>Home</strong></a><font style="font-size:12px;">&nbsp;›&nbsp;</font>
+					<a href="http://www.coocox.org/forum/index.php?language=en"><strong>CooCox Forum</strong></a><font style="font-size:12px;">&nbsp;›&nbsp;</font><a href="http://www.coocox.org/forum/forum.php?id=1"><strong>Support</strong></a>                    </td>
+                  <td id="ptd" width="50%" align="right" style="FILTER: progid:DXImageTransform.Microsoft.Gradient(gradientType=0,startColorStr=#ebeff9,endColorStr=#FFFFFF);border-bottom:#ebeff9 solid 1px; border-right:#ebeff9 solid 1px; background-image:url(images/menubg.gif); ">
+                  <span id="login_form"><a href="javascript:void(0);" onclick="openRegisterForm();">Register</a> or <a href="javascript:void(0);" onclick="openRegisterForm();">log in</a>   
+	
+</span></td>
+              </tr> </tbody></table><table width="100%" border="0" cellspacing="0" cellpadding="0" style="padding:0px; margin:0px;">
+                <tbody><tr>
+                    <td valign="top" id="forums">
+	<link rel="stylesheet" href="./SPI example for STM32F100RB (STM32VL Discovery) « CooCox Forum_files/ucenter.css" type="text/css">
+<div id="append_parent"></div>
+	<div class="infobox" style="position:relative;">
+			<h1 style="font-size:180%; width:65%;">SPI example for STM32F100RB (STM32VL Discovery)</h1> 
+
+			<ul>
+                <li style="margin-top:5px;">
+				Views (2612) 
+				<a style="margin-left:15px;">Reply (2)</a>
+				<a style="margin-left:15px;">State 
+(<img src="./SPI example for STM32F100RB (STM32VL Discovery) « CooCox Forum_files/support-forum-mu.png" alt="" style="vertical-align:top; width:14px; height:14px; border-width:0;"> not a support question)</a>
+				 </li>
+                 <li style="float:right;position:absolute;top:5px;right:5px;">
+                				 &nbsp;&nbsp;&nbsp;&nbsp;<img src="./SPI example for STM32F100RB (STM32VL Discovery) « CooCox Forum_files/new_post.gif"> <a onclick="javascript:showdiv(&#39;addpostform&#39;);" style="cursor:hand; padding:5px 0px; font-weight:bold;">Post a reply</a> </li>
+				
+			</ul>	
+			
+	</div>
+   
+	
+		<div class="navigation-links section">
+				</div>
+		<ol id="thread">
+<br><h1 style="font-size:140%;">Replies</h1><br><div id="addpostform"><p>You must <a href="http://www.coocox.org/forum/bb-login.php">log in</a> to post.</p></div><br>
+		<li id="post_3461">
+					 
+     <div class="entry">
+        <a name="post-3461" href="http://www.coocox.org/forum/topic.php?id=994#"></a>
+		<ul><li style="background-color:#eeeeee; line-height:18px; padding:5px; border-bottom: solid 1px #CCCCCC;  "> <a href="http://www.coocox.org/ucenter/driver.php?uid=1441" target="_blank"><img src="./SPI example for STM32F100RB (STM32VL Discovery) « CooCox Forum_files/ucenter_04.jpg" width="24"></a> <strong><a href="http://www.coocox.org/ucenter/driver.php?uid=1441" target="_blank">atif</a>
+        		        </strong> <div style=" float:left; margin-top:-19px !important;margin-top:0px;position:absolute;RIGHT:21%;">  </div>
+        <ol><li style="color:#333;"> 2 years ago </li>
+ </ol></li>
+        <li style="padding:10px; line-height:20px; ">
+        <style type="text/css">
+        div.entry ul li ul{ margin-left:20px;}
+		div.entry ul li ul li{ margin-left:10px; list-style:circle;}
+        </style>
+		
+		<p>&nbsp;The two examples for STM32F100RB (STM32VL Discovery) do not seem to be working. They compile and can be debugged but there is no output on the SCK or MOSI pins. One apparent problem is that the MISO pin is configured as&nbsp;GPIO_Mode_AF_PP. This pin is directly connected to ground during the SPI operation. This can even damage an SPI device. I tried to change the mode of MISO pin to floating but still it does not work.</p>
+<p>Can anyone give me a simple SPI master example for the&nbsp; STM32VL Discovery?</p>                		<div style="float:left; margin:15px;">
+        <a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=300&pubid=xa-50f052251629971d">
+            <img src="./SPI example for STM32F100RB (STM32VL Discovery) « CooCox Forum_files/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0">
+        </a>
+        <script type="text/javascript" src="./SPI example for STM32F100RB (STM32VL Discovery) « CooCox Forum_files/addthis_widget.js"></script><div id="_atssh" style="visibility: hidden; height: 1px; width: 1px; position: absolute; z-index: 100000;"><iframe id="_atssh105" title="AddThis utility frame" src="./SPI example for STM32F100RB (STM32VL Discovery) « CooCox Forum_files/sh157.htm" style="height: 1px; width: 1px; position: absolute; z-index: 100000; border: 0px; left: 0px; top: 0px;"></iframe></div><script type="text/javascript" src="./SPI example for STM32F100RB (STM32VL Discovery) « CooCox Forum_files/core130.js"></script>
+       </div>
+		                </li>
+        </ul>
+	</div>
+   		</li>
+
+				<li id="post_3476">
+					 
+     <div class="entry">
+        <a name="post-3476" href="http://www.coocox.org/forum/topic.php?id=994#"></a>
+		<ul><li style="background-color:#eeeeee; line-height:18px; padding:5px; border-bottom: solid 1px #CCCCCC;  "> <a href="http://www.coocox.org/ucenter/driver.php?uid=1200" target="_blank"><img src="./SPI example for STM32F100RB (STM32VL Discovery) « CooCox Forum_files/ucenter_04.jpg" width="24"></a> <strong><a href="http://www.coocox.org/ucenter/driver.php?uid=1200" target="_blank">JeoFin</a>
+        		                        </strong> <div style=" float:left; margin-top:-19px !important;margin-top:0px;position:absolute;RIGHT:21%;">  </div>
+        <ol><li style="color:#333;"> 2 years ago </li>
+ </ol></li>
+        <li style="padding:10px; line-height:20px; ">
+        <style type="text/css">
+        div.entry ul li ul{ margin-left:20px;}
+		div.entry ul li ul li{ margin-left:10px; list-style:circle;}
+        </style>
+		
+		<p>Hello!</p>
+<p>&nbsp;</p>
+<p>Here is something found from my personal stash. I think there it is missing a gpio structure for SPI2, otherwise it should be ok..</p>
+<p>And also check RCC_set!</p>
+<p>&nbsp;</p>
+<p>#include "stm32f10x_gpio.h"<br>
+#include "stm32f10x_rcc.h"<br>
+#include "stm32f10x_usart.h"<br>
+#include "stm32f10x_spi.h"<br>
+<br>
+uint8_t recData;<br>
+uint8_t sendData=0x00;<br>
+int i;<br>
+void SPI_test(void){<br>
+<br>
+&nbsp;&nbsp;&nbsp; RCC_APB2PeriphClockCmd (RCC_APB2Periph_USART1 | RCC_APB2Periph_AFIO&nbsp; | RCC_APB2Periph_GPIOA | RCC_APB2Periph_SPI1, ENABLE);<br>
+&nbsp;&nbsp;&nbsp; RCC_APB1PeriphClockCmd(RCC_APB1Periph_SPI2,ENABLE);<br>
+<br>
+&nbsp;&nbsp;&nbsp; GPIO_InitTypeDef GPIO_InitStructure;<br>
+&nbsp;&nbsp;&nbsp; USART_InitTypeDef USART_InitStructure;<br>
+&nbsp;&nbsp;&nbsp; SPI_InitTypeDef SPI_InitStructure;<br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp; /* Configure USART1 Tx (PA.09) as alternate function push-pull */<br>
+&nbsp;&nbsp;&nbsp; &nbsp; GPIO_InitStructure.GPIO_Pin = GPIO_Pin_9;<br>
+&nbsp;&nbsp;&nbsp; &nbsp; GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;<br>
+&nbsp;&nbsp;&nbsp; &nbsp; GPIO_InitStructure.GPIO_Speed = GPIO_Speed_10MHz;<br>
+&nbsp;&nbsp;&nbsp; &nbsp; GPIO_Init(GPIOA, &amp;GPIO_InitStructure);<br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp; /* Configure USART1 Rx (PA.10) as input floating */<br>
+&nbsp;&nbsp;&nbsp; &nbsp; GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10;<br>
+&nbsp;&nbsp;&nbsp; &nbsp; GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;<br>
+&nbsp;&nbsp;&nbsp; &nbsp; GPIO_Init(GPIOA, &amp;GPIO_InitStructure);<br>
+&nbsp;&nbsp;&nbsp; &nbsp; /*Usart init attributes 2400, 8N1*/<br>
+&nbsp;&nbsp;&nbsp; &nbsp; USART_InitStructure.USART_BaudRate = 4800 ;<br>
+&nbsp;&nbsp;&nbsp; &nbsp; USART_InitStructure.USART_WordLength = USART_WordLength_8b;<br>
+&nbsp;&nbsp;&nbsp; &nbsp; USART_InitStructure.USART_StopBits = USART_StopBits_1;<br>
+&nbsp;&nbsp;&nbsp; &nbsp; USART_InitStructure.USART_Parity = USART_Parity_No;<br>
+&nbsp;&nbsp;&nbsp; &nbsp; USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None;<br>
+&nbsp;&nbsp;&nbsp; &nbsp; USART_InitStructure.USART_Mode = USART_Mode_Tx | USART_Mode_Rx ;<br>
+&nbsp;&nbsp;&nbsp; &nbsp; USART_Init(USART1, &amp;USART_InitStructure);<br>
+&nbsp;&nbsp;&nbsp; &nbsp; /* Enable USART1 */<br>
+&nbsp;&nbsp;&nbsp; &nbsp; USART_Cmd(USART1, ENABLE);<br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp; /* Configure SPI1 pins: SCK(PA5), MISO (Not needed because rec&nbsp; only&nbsp; PA6) and MOSI (PA7)&nbsp; -------------------------------*/<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; GPIO_InitStructure.GPIO_Pin&nbsp;&nbsp; = GPIO_Pin_5 | GPIO_Pin_7;<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; GPIO_InitStructure.GPIO_Mode&nbsp; = GPIO_Mode_AF_PP;<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; GPIO_Init(GPIOA, &amp;GPIO_InitStructure);<br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; /* Configure PA4 as CS (Chip select) and PA6 as A0 (data /disp select) -------------------------------*/<br>
+&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; GPIO_InitStructure.GPIO_Pin&nbsp;&nbsp; = GPIO_Pin_4 | GPIO_Pin_6;<br>
+&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;<br>
+&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; GPIO_InitStructure.GPIO_Mode&nbsp; = GPIO_Mode_Out_PP;<br>
+&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; GPIO_Init(GPIOA, &amp;GPIO_InitStructure);<br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; /* SPI1 Configuration ----------------------------------------------------*/<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; /*<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; * Mode:Master<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; * Direction: send only<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; * Datasize: 8b (0x00 -&gt; 0xFF)<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; * SPOL = idle high<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; * CPHA = read data with rising edge (1 edge -&gt;down, 2 edge-&gt; up)<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; * Baudrade= just low as possible for testing purposes, 12MHz/256= 46,875kHz<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; */<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SPI_InitStructure.SPI_Direction = SPI_Direction_2Lines_FullDuplex;<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SPI_InitStructure.SPI_Mode = SPI_Mode_Master;<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SPI_InitStructure.SPI_DataSize = SPI_DataSize_8b;<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SPI_InitStructure.SPI_CPOL = SPI_CPOL_High;<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SPI_InitStructure.SPI_CPHA = SPI_CPHA_2Edge;<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SPI_InitStructure.SPI_NSS = SPI_NSS_Soft;<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SPI_InitStructure.SPI_FirstBit = SPI_FirstBit_MSB;<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SPI_InitStructure.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_64;<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SPI_InitStructure.SPI_CRCPolynomial = 8;<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SPI_Init(SPI1, &amp;SPI_InitStructure);<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* Enable SPI1 */<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SPI_Cmd(SPI1, ENABLE);<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //Settings for slave<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SPI_InitStructure.SPI_Direction = SPI_Direction_2Lines_FullDuplex;<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SPI_InitStructure.SPI_Mode = SPI_Mode_Slave;<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SPI_Init(SPI2, &amp;SPI_InitStructure);<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SPI_Cmd(SPI2,ENABLE);<br>
+&nbsp;&nbsp;&nbsp; &nbsp; printf(("Started!\n\r"));<br>
+<br>
+&nbsp;while(1){<br>
+&nbsp;&nbsp;&nbsp; &nbsp;if(sendData%8&lt;4){<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;GPIO_WriteBit(GPIOA,GPIO_Pin_4,Bit_SET);<br>
+&nbsp;&nbsp;&nbsp; &nbsp;}else{<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;GPIO_WriteBit(GPIOA,GPIO_Pin_4,Bit_RESET);<br>
+&nbsp;&nbsp;&nbsp; &nbsp;}<br>
+&nbsp;&nbsp;&nbsp; &nbsp;if(sendData%16&lt;8){<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;GPIO_WriteBit(GPIOA,GPIO_Pin_6,Bit_SET);<br>
+&nbsp;&nbsp;&nbsp; &nbsp;}else{<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;GPIO_WriteBit(GPIOA,GPIO_Pin_6,Bit_RESET);<br>
+&nbsp;&nbsp;&nbsp; &nbsp;}<br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;while (SPI_I2S_GetFlagStatus(SPI1, SPI_I2S_FLAG_TXE) == RESET);<br>
+&nbsp;&nbsp;&nbsp; &nbsp;SPI_I2S_SendData(SPI1,sendData);<br>
+&nbsp;&nbsp;&nbsp; &nbsp;printf("send data: %02x\n\r",sendData);<br>
+&nbsp;&nbsp;&nbsp; &nbsp;while(SPI_I2S_GetFlagStatus(SPI2,SPI_I2S_FLAG_RXNE)== RESET);<br>
+&nbsp;&nbsp;&nbsp; &nbsp;recData= SPI_I2S_ReceiveData(SPI2);<br>
+&nbsp;&nbsp;&nbsp; &nbsp;printf("rec data: %02x\n\r",recData);<br>
+&nbsp;&nbsp;&nbsp; &nbsp;for(i=0;i&lt;1000000;i++);<br>
+&nbsp;&nbsp;&nbsp; &nbsp;sendData++;<br>
+&nbsp;}<br>
+}<br>
+<br>
+<br>
+<br>
+&nbsp;</p>                </li>
+        </ul>
+	</div>
+   		</li>
+
+				<li id="post_3483">
+					 
+     <div class="entry">
+        <a name="post-3483" href="http://www.coocox.org/forum/topic.php?id=994#"></a>
+		<ul><li style="background-color:#eeeeee; line-height:18px; padding:5px; border-bottom: solid 1px #CCCCCC;  "> <a href="http://www.coocox.org/ucenter/driver.php?uid=1467" target="_blank"><img src="./SPI example for STM32F100RB (STM32VL Discovery) « CooCox Forum_files/ucenter_04.jpg" width="24"></a> <strong><a href="http://www.coocox.org/ucenter/driver.php?uid=1467" target="_blank">Anonymous</a>
+        		                        </strong> <div style=" float:left; margin-top:-19px !important;margin-top:0px;position:absolute;RIGHT:21%;">  </div>
+        <ol><li style="color:#333;"> 2 years ago </li>
+ </ol></li>
+        <li style="padding:10px; line-height:20px; ">
+        <style type="text/css">
+        div.entry ul li ul{ margin-left:20px;}
+		div.entry ul li ul li{ margin-left:10px; list-style:circle;}
+        </style>
+		
+		<p>people are pursuing for</p>
+<a href="http://www.shoehogan.com/">hogan scarpe</a>
+<p>cool. Whether it is</p>
+<a href="http://www.shoehogan.com/">scarpe hogan</a>
+<p>or  fashion accessories. Same is the case with trendy looking</p>
+<a href="http://www.shoehogan.com/">hogan sito ufficiale</a>
+<p>. When these are</p>
+<a href="http://www.lvborseitalian.com/">Louis Vuitton</a>
+<p>, the excitement just gets  doubled. Most chic looking</p>
+<a href="http://www.lvborseitalian.com/">Louis Vuitton  Borse</a>
+<p>are in fashion now.If you have not yet tried</p>
+<a href="http://www.lvborseitalian.com/">louis vuitton prezzi</a>
+<p>. These are just  brilliant and fabulous</p>
+<a href="http://www.lvborsesale.com/">Louis Vuitton  outlet</a>
+<p>. The quality of</p>
+<a href="http://www.lvborsesale.com/">borse louis  vuitton</a>
+<p>is just superior to what you have dreamt of. Today owning a new and  trendy looking</p>
+<a href="http://www.lvborsesale.com/">outlet borse louis  vuitton</a>
+<p>are not only meant for the wealthy people. These are now made  luxurious and affordable</p>
+<a href="http://www.lvborsesale.com/">borse louis  vuitton outlet</a>
+<p>to reach out to every budget and range.</p>                </li>
+        </ul>
+	</div>
+   		</li>
+
+				<li id="post_5196">
+					 
+     <div class="entry">
+        <a name="post-5196" href="http://www.coocox.org/forum/topic.php?id=994#"></a>
+		<ul><li style="background-color:#eeeeee; line-height:18px; padding:5px; border-bottom: solid 1px #CCCCCC;  "> <a href="http://www.coocox.org/ucenter/driver.php?uid=2498" target="_blank"><img src="./SPI example for STM32F100RB (STM32VL Discovery) « CooCox Forum_files/ucenter_04.jpg" width="24"></a> <strong><a href="http://www.coocox.org/ucenter/driver.php?uid=2498" target="_blank">sal</a>
+        		                        </strong> <div style=" float:left; margin-top:-19px !important;margin-top:0px;position:absolute;RIGHT:21%;">  </div>
+        <ol><li style="color:#333;"> 1 year ago </li>
+ </ol></li>
+        <li style="padding:10px; line-height:20px; ">
+        <style type="text/css">
+        div.entry ul li ul{ margin-left:20px;}
+		div.entry ul li ul li{ margin-left:10px; list-style:circle;}
+        </style>
+		
+		<p>&nbsp;JeoFin, it seemed like you did not configure the port pins for SPI2. &nbsp;Have you tried running this code?&nbsp;</p>                </li>
+        </ul>
+	</div>
+   		</li>
+
+				<li id="post_5266">
+					 
+     <div class="entry">
+        <a name="post-5266" href="http://www.coocox.org/forum/topic.php?id=994#"></a>
+		<ul><li style="background-color:#eeeeee; line-height:18px; padding:5px; border-bottom: solid 1px #CCCCCC;  "> <a href="http://www.coocox.org/ucenter/driver.php?uid=2528" target="_blank"><img src="./SPI example for STM32F100RB (STM32VL Discovery) « CooCox Forum_files/ucenter_04.jpg" width="24"></a> <strong><a href="http://www.coocox.org/ucenter/driver.php?uid=2528" target="_blank">Anonymous</a>
+        		                        </strong> <div style=" float:left; margin-top:-19px !important;margin-top:0px;position:absolute;RIGHT:21%;">  </div>
+        <ol><li style="color:#333;"> 1 year ago </li>
+ </ol></li>
+        <li style="padding:10px; line-height:20px; ">
+        <style type="text/css">
+        div.entry ul li ul{ margin-left:20px;}
+		div.entry ul li ul li{ margin-left:10px; list-style:circle;}
+        </style>
+		
+		<p>Sleepgate is a talker, but Ken Griffey Jr. should stay   "I don't want to see Ken Griffey Jr. go out like this.  Don't want to see a superstar who radiates joy depart wrapped in woe. Don't want to see a player who loves the clubhouse environment exit after some clubhouse members betrayed him. Don't want to see the game he once mastered turn around and pound him until his goodbye feels more like a banishment.  Don't want to see The Kid undid.<a href="http://www.griffeyshoesonecheap.com/">griffey shoes</a>  Admittedly, these are emotions, not facts to support a well-reasoned argument. It's an undeniable truth that Griffey doesn't have it anymore, that he's done being a productive everyday player and that, if he wanted to leave with his ego intact, he should've said adios a long time ago.<a href="http://www.griffeyshoesonecheap.com/">cheap griffeys</a>  There's no sane case to be made in rebuttal. It's clear. It's painfully obvious. Therefore, any defense of Griffey, the 40-year-old fading legend, must start with the admission that feelings are overwhelming logic.<a href="http://www.griffeyshoesonecheap.com/">ken griffey shoes</a>  But that doesn't mean the Griffey admirers are mere windbags in this debate. In fact, ever since the Sleepgate story broke on Monday, most all of the reactions, on either side, have turned into a flood of emotions. The truth is lost in there somewhere. No one is seeking it anymore. We're all taking sides or making silly rationalizations or YELLING AND SCREAMING or using this issue to foist our personal beliefs on how a hero should retire.  It's all about emotions now, feelings, and so in this state, there's nothing wrong with believing that Junior deserves a better ending and hoping he can stick around long enough to get it.<a href="http://www.griffeyshoesonecheap.com/">ken griffey jr shoes</a>  Yes, it defies logic that the Mariners should allow a .200 hitter who can't play the field to remain on the roster.<a href="http://www.griffeyshoesonecheap.com/">griffeys</a>  At the same time, it's just as illogical to believe a franchise should dump its greatest player before identifying a player worthy of shoving a future Hall of Famer out the door.<a href="http://www.griffeyshoesonecheap.com/">griffeys 2012</a>  Yes, it defies logic that an athlete getting paid $2.35 million to work 162 games would be accused of napping during the only three-hour period of his workday that really matters.<a href="http://www.griffeyshoesonecheap.com/">http://www.griffeyshoesonecheap.com</a> At the same time, it's just as illogical to turn a humiliating, isolated incident into a full-fledged indictment and claim that Griffey doesn't care about the game anymore."</p>
+<hr>
+<p>Herve Leger Sues Stretta in Trade Dress Lawsuit   Trade dress infringement getting on BCBG’s last HERVE. ( <a href="http://www.herveleger2012cheap.com/">herve leger</a> that is) Talk about messing with a bigwig, Stretta Moda, a clothing line sold through various retailers, Revolve and Devine just to name a few,  has been manufacturing precisely the same style Trade dress as originally manufactured by <a href="http://www.herveleger2012cheap.com/">Herve Leger Bandage Dress</a>.  Since, the early 90′s Herve Leger (now owned by BCBG MaxAzria) has continuously featured their unique Trade Dress known as the “<a href="http://www.herveleger2012cheap.com/">Bandage Dress</a>” in their seasonal fashion shows (worn by many celebs singer Cassie is featured to the left). Unfortunately, since 2010 Stretta Apparel has been copying the “Bandage Dress” style strap dress. On March 12 in Central District court of California BCBG filed a   lawsuit that claims severe financial damages due to Trade Dress infringement and dilution. (complaint below)  Herve Leger Bandage dress is characterized as the “bandage dress” with 3 prominent NON-FUNCTIONAL features 1) bands of fabric, 2) arranged in horizontal and/or diagonal patterns, 3) to form the tight-fitting dress with an overall look that accentuates the female form.  To steal some of BCBG’s popularity Stretta Moda employed a type of “leak” campaign where by Stretta described their products to the public as made in the same factories as authentic <a href="http://www.herveleger2012cheap.com/">herve leger dresses</a> are made in.  In other words, Stretta has falsely advertised, in the context of interstate commerce, that its Herve Leger   knock-offs are virtually the same as authentic Herve Leger garments—the one difference being the lower Stretta price and low quality fabric.  Shockingly I found reputable retailers selling the poor quality Stella goods… take a look for yourself. Looks like cheap polyester can fool the best of them!  Revolve Clothing <a href="http://www.herveleger2012cheap.com/">http://www.herveleger2012cheap.com</a>  Shop Divine <a href="http://www.herveleger2012cheap.com/">http://www.herveleger2012cheap.com</a></p>
+<hr>
+<p>Herve Leger offers many wonderful benefits   Beautiful <a href="http://www.herveleger2012cheap.com/">herve leger sale</a>  No matter what type of dress you like, you can look at the Herve Leger dress, you can use your <a href="http://www.herveleger2012cheap.com/">herve leger dress</a>, which is due to the sale. Sales Herve dress almost all the celebrities are wearing. It is a very narrow, limited, in addition to the sometimes complex layout, functionality and bright colors. cheap Herve Leger sale one of its formations.   For this reason, because this is wonderful, you're in a low-cost discounts to sell clothing dress <a href="http://www.herveleger2012cheap.com/">Herve Leger dress online</a> investment course not only an illusion anylonger. While the driver of the online world of phenomena, you will find the perfect dress Herve Leger, the grounds, surrealism, your appearance, to present their own proposals to expose the fine. Herve Leger strapless dress, also available online from the Herve Leger dress the lowest cost. Pay special attention to the color of clothing Herve Leger dress very inexpensive form of feeling. Herve Leger dress is one of many models and the design and equipment. The appearance of Herve Leger, you will be advertising on the Internet, as well as different types. You want your child may have, Herve Leger, to be only a visual? Herve Leger takes place every woman is just a woman. They have the form of-galactosidase activity, if you?   Suspenders girls high can laugh all he can easily be made much smaller, beautiful Herve Leger dresses is purely amazing, you can do. His thin dark but not particularly easy, compared to a disturbing shadow, lighting, and more strategic Herve Leger dress much more spectacular. If you are thin or pet, even if you're new, more pessimistic, you can have a charming, brash honey, if your clothes can get adequate <a href="http://www.herveleger2012cheap.com/">herve leger dress sale</a>. Visit, look, you will attract these beautiful dresses. Welcome to our online store, our current non-delivery and fast delivery. As expected in a modern society, it is very difficult, almost all girls, she often does not anywhere. Especially when we indulge in a little extra. We have a job to dress. So he and I will be the most beautiful. Herve Leger is a good choice for you. If a movie star locks, model or pop star seems mane and Herve Leger dress, when you provide will be those. So what to buy dresses Herve Leger.   Strengthening Herve Leger dress the abdomen showed the age of 60 dental applications, but at the same time by many of the latest fashion. good <a href="http://www.herveleger2012cheap.com/">Herve Leger 2012</a> the sale of all your clothes can be very hot, can Herve Leger dress the stage of best sellers such as lotus leaves Eliptical, especially young people looking cute. Herve Leger dress options. Herve Leger bandage Dresscan 2011 model of innovation is attractive enough to find solutions to their models, including the identity of belonging to the cultural heritage of the dominant production of a number of other services attractive dress Herv latest issue of In fact, all major sight is optional. You get out of Herve Leger dresses, not a saint, do not trust your little pictures of Lori. The decline in the price of the cloud of <a href="http://www.herveleger2012cheap.com/">Herve Leger outlet</a> in your field considerably, with an elegant and lively with a slight discount sexy Herve Leger.   You can strapless Herve Leger, the color of   particular alternative is no doubt that the stage is probably the standard that Apple could use some of the summer, the excitement of the full functionality of a lot of chip. Herve Leger stomach top-of-sales, coupled with models of clothing can be good to make up a significant amount of additional light. Fashion, with part of the original, since the painting was from 2010 girls dress pattern Herve Leger information, but also make an important contribution of extracurricular activities. It will all Herve Leger dress, a girl, that baby wipes breasts woman models, with features bubble well Herve Leger dresses popular model of the lower abdomen, especially mixed with black velvet amazing?   Women also need people, simply because the physical structure of your ski equipment they need Herve Leger bandage dress of V have to give these people involved, most people the ideal position of the table. Herve Leger dress clothes, dress fashion community with the right, we need a lot of sales specialization Herve Leger. For this reason, a great dress, you have to move, you need to reach the neck and throat wedding dress scoop, and a legend-makers, and watch your overall sense of magic that can be used worldwide. The method can often be recycled, they dress up and have a lot of quality dress, Herve Leger, and an online store with good equipment.   Herve Leger offers many wonderful benefits, Herve Leger dress that can appeal to their products, as some of our customers. <a href="http://www.herveleger2012cheap.com/">Cheap Herve Leger</a> in some of our online stores, you can use a variety of dresses Herve Leger, beautiful Herve Leger sale you want to capture. Has no effect on the road, on foot or on television, you will sell Herve Leger dress is everywhere. The idea of trends. This, of course, Herve Leger bandage dress sense to take with you. For example, Kim Kardashian celebrity and enjoy the company, with Lindsay Lohan. You can use the artists. Herve dress sale are often known in the world. We offer secure online ordering and offline, better customer service. Herve Leger dress Gap in our online store. Maybe it's really a difficult choice. Now the fashion for all age groups of women. Herve Leger include body and legs in its way. Bebe stores its own copy of these structures, but simply can not cope with the original.                                                                               Home Run Derby 2012: Prince Fielder winner for second time   Prince Fielder made a splash at the All-Star Home Run Derby. Eight of them.   The Detroit slugger joined Ken Griffey Jr. as the only players to win multiple titles, thrilling the crowd at Kauffman Stadium with several shots into the right-field fountain and beating Toronto's Jose Bautista 12-7 in the final Monday night.   "Just being mentioned with him is real special," said Fielder, who spent time at <a href="http://www.griffeyssalecheap.com/">griffeys</a> house when he was a kid. "My dad would let me go over and play video games all day. He always took care of me when I was a kid."   On a night when the Yankees' Robinson Cano was repeatedly booed and went homerless, Fielder put on the most powerful display among baseball's big boppers. Winner at St. Louis' Busch Stadium three years ago, Fielder had a total of 28 home runs over three rounds to cap the main event on the eve of the All-Star game. He hit the four longest drives of the night, including a pair at 476 feet.   "They were far," he said. "That's not easy to hit it out there."<a href="http://www.griffeyssalecheap.com/">ken griffey shoes</a>  While the ball stayed out of McCovey Cove during the 2007 Derby at San Francisco's AT&amp;T Park and the right-field swimming pool last year at Chase Field in Phoenix, there was plenty of aquatic activity in Kansas City, second only to Rome for most fountains in cities around the world.   After three splash shots among his five homers in the first round, Fielder started off the second round as the setting sun lit up clouds in a pretty pink behind the left-field wall. His mop of dreadlocks visible as he hit without a helmet, Fielder deposited four more balls into the 322-foot-wide water spectacular, which by then was illuminated in the twilight.   He added another water drive in the final round, then leaned against one of his sons while he watched Bautista swing.<a href="http://www.griffeyssalecheap.com/">ken griffey jr shoes</a>   "I'm a little disappointed," Bautista said. "I'm capable of doing more. I had a lot of fun doing it."   When he won three years ago in St. Louis, Fielder's 23 homers included a 503-foot drive that disappeared between two sections of bleachers in right-center. Griffey won titles in 1994 at Pittsburgh's Three Rivers Stadium, 1998 at Denver's Coors Field and 1999 at Boston's Fenway Park.   Cano set a final-round record of 12 en route to last year's title in Phoenix, where he hit 32 overall. This year he was the object of loud booing throughout by fans upset he didn't select the Royals' Billy Butler after promising to take a hometown player for his derby team.<a href="http://www.griffeyssalecheap.com/">cheap griffeys</a>   Fans chanted "Bil-ly Butler!" in between their boos. When it was over, Cano got hugs from Boston's David Ortiz and Yankees teammates Curtis Granderson and CC Sabathia.   "I was criticized before I got here. If you play for the Yankees you get booed everywhere you go," Cano said.   It was the 17th time a player went homerless in the Derby, the first since Detroit's Brandon Inge in 2009.<a href="http://www.griffeyssalecheap.com/">king griffey shoes</a>   "that was the most interesting reaction to a home rum derby i've ever seen, but the fans were excited which is all that counts," Granderson tweeted.   Carlos Gonzalez and Andrew McCutchen (four each) and Matt Kemp (one) also were dropped after the first round.<a href="http://www.griffeyssalecheap.com/">griffey shoes</a>   Carlos Beltran (12) was dropped after the second round, when Mark Trumbo and Bautista were tied with 13 apiece, leading to a swingoff won by Bautista 2-1.   Trumbo and Bautista each managed to put a drive into the small fountain beyond the left-field wall. Trumbo also hit a pair of shots over the Royals Hall of Fame in left, toward Interstate 70.<a href="http://www.griffeyssalecheap.com/">http://www.griffeyssalecheap.com</a></p>
+<hr>
+<p>Michael Jordan: Team USA 2012 basketball is no '92 Dream Team   Michael Jordan says there's no way Kobe Bryant and this year's USA Olympic basketball team could've beaten the 1992 Dream Team.   Jordan told The Associated Press Thursday that he laughed — "I absolutely laughed" — when hearing Bryant's comments that the squad training in Las Vegas could take Jordan and company.   Jordan said there's "no comparison" which team is better.<a href="http://www.jordanheels2012online.org/">nike heels</a>   "For him to compare those two teams is not one of the smarter things he ever could have done," Jordan said prior playing in a celebrity golf tournament in Charlotte.<a href="http://www.jordanheels2012online.org/cheap-nike-air-jordan-6-high-heels-white-red-p-127.html">cheap jordan heels</a>   Jordan said the 1992 team, which included 11 future Hall of Famers and won its six Olympic games by an average of more than 43 points en route to capturing the gold medal, was a better overall team largely because of the experience it put on the floor.<a href="http://www.jordanheels2012online.org/">nike heels for women</a>   "I heard Kobe say we were not athletic," said a smiling Jordan as he sat in a golf cart puffing on his cigar while waiting to tee off. "But we were smart. He said we were too old, but I was 29 and in the prime of my career. Pip (Scottie Pippen) was 26 or 27, (Charles) Barkley was 29, Patrick (Ewing) was 29 and Chris Mullin was 29. Almost everybody was still in their twenties."<a href="http://www.griffeyshoesonecheap.com/black-and-grey-nike-air-griffey-max-1-p-93.html">cheap griffeys</a>   Jordan's response came after Bryant told reporters in Las Vegas that this year's team could pull out a win against the Dream Team if they faced each other in their primes. Bryant said this year's team has a bunch of racehorses, players who are incredibly athletic while the Dream Team consisted mainly of players at the tail end of their careers.<a href="http://www.jordanheels2012online.org/air-jordan-11-high-heels-c-9.html">cheap jordan high heels</a>   He wasn't backing away from how he felt after the U.S. beat the Dominican Republic 113-59 on Thursday night in its exhibition opener, and wasn't bothered by Jordan's response.<a href="http://www.jordanheels2012online.org/">nike high heels</a>   "I'm not really tripping," Bryant said. "The fact is they've got (Patrick) Ewing and (David) Robinson, those big guys. I mean it's tough. But if you're asking me if we can beat them one game, hell yeah we can beat them one game. You didn't ask me if we could beat them in a seven-game series. One game, we could get them, no question about it."   Bryant's earlier comments received immediate and sharp rebuttal from some members of the Dream Team, including Barkley.<a href="http://www.jordanheels2012online.org/">jordan heels</a>   Jordan joined in on Thursday.<a href="http://www.jordanheels2012online.org/air-jordan-5-high-heels-c-5.html">jordan heels for women</a>   "Most of us were in the prime of our careers, at a point where athleticism doesn't really matter," said Jordan, the owner of the Charlotte Bobcats. "You have to know how to play the game."<a href="http://www.jordanheels2012online.org/air-jordan-4-high-heels-c-4.html">jordan high heels</a>   Jordan shook his head when asked why he thinks Bryant made the comments.<a href="http://www.jordanheels2012online.org/">jordan high heels</a>   "I imagine he's trying to say it to legitimize his own Dream Team," Jordan said. "But to me it's not even a question what team is better."   Jordan said Bryant is certainly entitled to his opinion — even though he said it's just plain wrong.<a href="http://www.jordanheels2012online.org/cheap-nike-air-jordan-6-high-heels-white-red-p-127.html">cheap nike high heels</a>   "For him to make that comparison, it's one of those things where it creates conversation," Jordan said. "I guess we'll never know. I'd like to think that we had 11 Hall of Famers on that team and whenever they get 11 Hall of Famers you call and ask me who had the better Dream Team. Remember now, they learned from us. We didn't learn from them."</p>                </li>
+        </ul>
+	</div>
+   		</li>
+
+		
+		</ol>
+
+		
+
+	    
+	
+
+	
+	    
+<div class="navigation-links section">
+					</div>
+<script type="text/javascript" src="./SPI example for STM32F100RB (STM32VL Discovery) « CooCox Forum_files/plan_en.js"></script>
+<script>
+function addApply(id){
+	var reason = Trim($('#reason').val());
+	if(reason.length < 10){
+		alert('Enter at least 10 characters');
+		return false;
+	}
+	if(reason.length > 101){
+		alert('Must not exceed 100 characters');
+		return false;
+	}
+	$.ajax({
+		url: '/forum/addapply.php?language=en&id='+id,
+		type: 'post',
+		data: $('#addform').serialize(),
+		dataType:'html',
+		cache: false,
+		success: function(json) {
+			var d = json.split('$$$');
+			$('#append_parent').html('');
+			alert(d[0]);
+			if(d[0] == 'Apply success'){
+				$('.apply').hide();
+				$.ajax({
+					url: '/app/get_post.php?language=en&post_id='+d[3],
+					type: 'GET',
+					dataType:'html',
+					cache: false,
+					success: function(json) {
+						$('#thread').append(json);
+					}
+				});	
+			}
+		}
+	});		
+}
+function delApply(id){
+	$.ajax({
+		url: '/forum/addapply.php?language=en&del=1&id='+id,
+		type: 'GET',
+		dataType:'html',
+		cache: false,
+		success: function(json) {
+			var d = json.split('$$$');
+			alert(d[0]);
+			if(d[0] == 'Cancel success'){
+				$('.apply').show();
+				$('#post_'+d[2]).remove();
+			}
+		}
+	});		
+}
+</script>
+		  </td>
+        <td style="width:21% !important;width:22%;" valign="top">		 
+<div id="sidebar" class="right">    
+     	<div class="menucomu">
+		<h2 class="section-header">&nbsp;CooCox Community</h2>
+		<p class="frontpageheatmap" style="padding:0px 3px;">
+        </p><ul>
+        <li style="margin:2px 5px;"><img src="./SPI example for STM32F100RB (STM32VL Discovery) « CooCox Forum_files/link.gif">&nbsp;&nbsp;<a href="http://mbed.org/users/ericebert/programs/CoOS/liv3nb" target="_blank">Eric Ebert</a>&nbsp;&nbsp;(OS Expert)</li>
+        <li style="margin:2px 5px;"><img src="./SPI example for STM32F100RB (STM32VL Discovery) « CooCox Forum_files/link.gif">&nbsp;&nbsp;<a href="http://polisoftdesign.com/blog" target="_blank">Stefan Poli</a>&nbsp;&nbsp;(OS Expert)</li>
+        </ul>
+        <p></p>
+	</div>
+    <div class="menu"><h2 class="section-header">CooCox Recent Blog</h2><ul><li style="line-height:20px;">&nbsp;<img src="./SPI example for STM32F100RB (STM32VL Discovery) « CooCox Forum_files/link.gif"> <a target="_blank" href="http://www.coocox.org/blog/?p=534" title="Intelligent Flower Care System">Intelligent Flower Care System</a></li><li style="line-height:20px;">&nbsp;<img src="./SPI example for STM32F100RB (STM32VL Discovery) « CooCox Forum_files/link.gif"> <a target="_blank" href="http://www.coocox.org/blog/?p=520" title="如何在Raspbian上搭建Embedded Pi的开发环境">如何在Raspbian上搭建Embedded Pi的开发环境</a></li><li style="line-height:20px;">&nbsp;<img src="./SPI example for STM32F100RB (STM32VL Discovery) « CooCox Forum_files/link.gif"> <a target="_blank" href="http://www.coocox.org/blog/?p=517" title="How to build the development environment for Embedded Pi in Raspbian">How to build the development environment for Embedded Pi in Raspbian</a></li><li style="line-height:20px;">&nbsp;<img src="./SPI example for STM32F100RB (STM32VL Discovery) « CooCox Forum_files/link.gif"> <a target="_blank" href="http://www.coocox.org/blog/?p=511" title="Raspberry Pi + GUI控制RGB-LED——通过Embedded Pi扩展RPI PWM功能">Raspberry Pi + GUI控制RGB-LED——通过Embedded Pi扩展RPI PWM功能</a></li><li style="line-height:20px;">&nbsp;<img src="./SPI example for STM32F100RB (STM32VL Discovery) « CooCox Forum_files/link.gif"> <a target="_blank" href="http://www.coocox.org/blog/?p=491" title="Raspberry Pi + GUI to Control RGB-LED——Add PWM functionality to RPI with Embedded Pi">Raspberry Pi + GUI to Control RGB-LED——Add PWM functionality to RPI with Embedded Pi</a></li><li style="line-height:20px;">&nbsp;<img src="./SPI example for STM32F100RB (STM32VL Discovery) « CooCox Forum_files/link.gif"> <a target="_blank" href="http://www.coocox.org/blog/?p=469" title="Getting Started with the Embedded Pi and Raspbian">Getting Started with the Embedded Pi and Raspbian</a></li><li style="line-height:20px;">&nbsp;<img src="./SPI example for STM32F100RB (STM32VL Discovery) « CooCox Forum_files/link.gif"> <a target="_blank" href="http://www.coocox.org/blog/?p=459" title="Embedded Pi 快速入门（Raspbian篇）">Embedded Pi 快速入门（Raspbian篇）</a></li><li style="line-height:20px;">&nbsp;<img src="./SPI example for STM32F100RB (STM32VL Discovery) « CooCox Forum_files/link.gif"> <a target="_blank" href="http://www.coocox.org/blog/?p=441" title="Add ADC Functionality to Raspberry Pi with Embedded Pi">Add ADC Functionality to Raspberry Pi with Embedded Pi</a></li><li style="line-height:20px;">&nbsp;<img src="./SPI example for STM32F100RB (STM32VL Discovery) « CooCox Forum_files/link.gif"> <a target="_blank" href="http://www.coocox.org/blog/?p=434" title="用EPi扩展RPi的模数转换功能">用EPi扩展RPi的模数转换功能</a></li><li style="line-height:20px;">&nbsp;<img src="./SPI example for STM32F100RB (STM32VL Discovery) « CooCox Forum_files/link.gif"> <a target="_blank" href="http://www.coocox.org/blog/?p=426" title="CoX Guide Book">CoX Guide Book</a></li></ul></div>
+	<div class="menu">
+		<h2 class="section-header">&nbsp;Hot Tags</h2>
+		<p class="frontpageheatmap" style="padding:0px 3px;"><a href="http://www.coocox.org/forum/tags.php?tag=atmel" title="17 topics" rel="tag" style="font-size:8.2pt;">Atmel</a>
+<a href="http://www.coocox.org/forum/tags.php?tag=bug" title="236 topics" rel="tag" style="font-size:11.7pt;">Bug</a>
+<a href="http://www.coocox.org/forum/tags.php?tag=c" title="5 topics" rel="tag" style="font-size:8pt;">c++</a>
+<a href="http://www.coocox.org/forum/tags.php?tag=coassistant" title="6 topics" rel="tag" style="font-size:8pt;">CoAssistant</a>
+<a href="http://www.coocox.org/forum/tags.php?tag=cobuilder" title="60 topics" rel="tag" style="font-size:8.9pt;">CoBuilder</a>
+<a href="http://www.coocox.org/forum/tags.php?tag=codebugger" title="112 topics" rel="tag" style="font-size:9.7pt;">CoDebugger</a>
+<a href="http://www.coocox.org/forum/tags.php?tag=coflash" title="127 topics" rel="tag" style="font-size:10pt;">CoFlash</a>
+<a href="http://www.coocox.org/forum/tags.php?tag=coide" title="883 topics" rel="tag" style="font-size:22pt;">CoIDE</a>
+<a href="http://www.coocox.org/forum/tags.php?tag=colink" title="69 topics" rel="tag" style="font-size:9pt;">CoLink</a>
+<a href="http://www.coocox.org/forum/tags.php?tag=colinkex" title="171 topics" rel="tag" style="font-size:10.7pt;">CoLinkEx</a>
+<a href="http://www.coocox.org/forum/tags.php?tag=comment" title="46 topics" rel="tag" style="font-size:8.7pt;">Comment</a>
+<a href="http://www.coocox.org/forum/tags.php?tag=compiler" title="4 topics" rel="tag" style="font-size:8pt;">Compiler</a>
+<a href="http://www.coocox.org/forum/tags.php?tag=components" title="88 topics" rel="tag" style="font-size:9.3pt;">Components</a>
+<a href="http://www.coocox.org/forum/tags.php?tag=cookie" title="21 topics" rel="tag" style="font-size:8.3pt;">cookie</a>
+<a href="http://www.coocox.org/forum/tags.php?tag=cookie%e6%95%99%e7%a8%8b" title="5 topics" rel="tag" style="font-size:8pt;">Cookie教程</a>
+<a href="http://www.coocox.org/forum/tags.php?tag=coos" title="193 topics" rel="tag" style="font-size:11pt;">CoOS</a>
+<a href="http://www.coocox.org/forum/tags.php?tag=cox" title="67 topics" rel="tag" style="font-size:9pt;">COX</a>
+<a href="http://www.coocox.org/forum/tags.php?tag=driver" title="6 topics" rel="tag" style="font-size:8pt;">driver</a>
+<a href="http://www.coocox.org/forum/tags.php?tag=efm32" title="5 topics" rel="tag" style="font-size:8pt;">EFM32</a>
+<a href="http://www.coocox.org/forum/tags.php?tag=embedded-pi" title="19 topics" rel="tag" style="font-size:8.2pt;">Embedded&nbsp;Pi</a>
+<a href="http://www.coocox.org/forum/tags.php?tag=energymicro" title="4 topics" rel="tag" style="font-size:8pt;">EnergyMicro</a>
+<a href="http://www.coocox.org/forum/tags.php?tag=energy-micro" title="7 topics" rel="tag" style="font-size:8pt;">Energy&nbsp;Micro</a>
+<a href="http://www.coocox.org/forum/tags.php?tag=freescale" title="13 topics" rel="tag" style="font-size:8.1pt;">freescale</a>
+<a href="http://www.coocox.org/forum/tags.php?tag=gcc" title="5 topics" rel="tag" style="font-size:8pt;">gcc</a>
+<a href="http://www.coocox.org/forum/tags.php?tag=j-link" title="4 topics" rel="tag" style="font-size:8pt;">J-Link</a>
+<a href="http://www.coocox.org/forum/tags.php?tag=jtag" title="5 topics" rel="tag" style="font-size:8pt;">jtag</a>
+<a href="http://www.coocox.org/forum/tags.php?tag=keil" title="4 topics" rel="tag" style="font-size:8pt;">Keil</a>
+<a href="http://www.coocox.org/forum/tags.php?tag=lpc1768" title="10 topics" rel="tag" style="font-size:8.1pt;">LPC1768</a>
+<a href="http://www.coocox.org/forum/tags.php?tag=mdk" title="4 topics" rel="tag" style="font-size:8pt;">MDK</a>
+<a href="http://www.coocox.org/forum/tags.php?tag=nuvoton" title="88 topics" rel="tag" style="font-size:9.3pt;">Nuvoton</a>
+<a href="http://www.coocox.org/forum/tags.php?tag=nxp" title="249 topics" rel="tag" style="font-size:11.9pt;">NXP</a>
+<a href="http://www.coocox.org/forum/tags.php?tag=question" title="622 topics" rel="tag" style="font-size:17.8pt;">Question</a>
+<a href="http://www.coocox.org/forum/tags.php?tag=st" title="514 topics" rel="tag" style="font-size:16.1pt;">ST</a>
+<a href="http://www.coocox.org/forum/tags.php?tag=stm32" title="6 topics" rel="tag" style="font-size:8pt;">STM32</a>
+<a href="http://www.coocox.org/forum/tags.php?tag=stm32f4" title="10 topics" rel="tag" style="font-size:8.1pt;">stm32f4</a>
+<a href="http://www.coocox.org/forum/tags.php?tag=suggestion" title="94 topics" rel="tag" style="font-size:9.4pt;">Suggestion</a>
+<a href="http://www.coocox.org/forum/tags.php?tag=ti" title="79 topics" rel="tag" style="font-size:9.2pt;">TI</a>
+<a href="http://www.coocox.org/forum/tags.php?tag=toshiba" title="12 topics" rel="tag" style="font-size:8.1pt;">Toshiba</a>
+<a href="http://www.coocox.org/forum/tags.php?tag=usb" title="5 topics" rel="tag" style="font-size:8pt;">USB</a>
+<a href="http://www.coocox.org/forum/tags.php?tag=%e9%97%ae%e9%a2%98" title="6 topics" rel="tag" style="font-size:8pt;">问题</a></p>
+	</div>
+    <div class="menucomu2">
+		<p style="line-height:20px;color:#0066cc;border-bottom: 2px solid #009DEE; font-size:14px; font-weight:bold; ">&nbsp;Union</p>
+                <ul style="margin:10px 2px; "> 
+                 <li style="line-height:20px; "><a href="http://www.element14.com/" target="_blank"><img src="./SPI example for STM32F100RB (STM32VL Discovery) « CooCox Forum_files/e14.jpg" width="200" height="50" border="0"> </a></li>
+               <li style="line-height:20px; "><a href="http://www.embedinfo.com/" target="_blank"><img src="./SPI example for STM32F100RB (STM32VL Discovery) « CooCox Forum_files/embest.jpg" width="200" height="50" border="0"> </a></li>
+               <li style="line-height:20px; "><a href="http://www.cadsoftusa.com/" target="_blank"><img src="./SPI example for STM32F100RB (STM32VL Discovery) « CooCox Forum_files/cadsoft.jpg" width="200" height="50" border="0"> </a></li>
+           
+         </ul>
+
+	</div>
+
+
+     </div>
+	
+
+	
+                  </td>
+                </tr>
+          </tbody></table>
+        </td>
+      </tr>
+     </tbody></table>
+
+
+
+        
+           
+             
+	 <div class="foot">
+         <div class="foot_content"> © 2009 -2011 CooCox -&nbsp;<a href="http://www.coocox.org/policy.htm">Terms of Use</a> &nbsp; &nbsp;&nbsp; &nbsp;<img src="./SPI example for STM32F100RB (STM32VL Discovery) « CooCox Forum_files/hand.gif" width="16" height="16" style="margin-bottom:0px;">&nbsp;&nbsp;<a href="http://www.coocox.org/BusinessModel.htm">Business Model</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="./SPI example for STM32F100RB (STM32VL Discovery) « CooCox Forum_files/mail(1).gif" width="14" height="11">&nbsp;&nbsp;<a href="mailto:market@coocox.com">Market</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="./SPI example for STM32F100RB (STM32VL Discovery) « CooCox Forum_files/aboutus.jpg" style="margin-bottom:0px;">&nbsp;&nbsp;<a href="http://www.coocox.org/aboutus.htm">About us</a>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="./SPI example for STM32F100RB (STM32VL Discovery) « CooCox Forum_files/aboutus.jpg" style="margin-bottom:0px;">&nbsp;&nbsp;<a href="http://www.coocox.org/terms.htm">Terms and Conditions</a>          </div>
+
+ </div>
+
+             	
+</div>
+
+
+
+</div><style> 
+#login_box{ font-family:Arial, Helvetica, sans-serif;}
+#login_box {width:656px;height:303px;display:none;position:relative;}
+#login_box fieldset { border:0 none; }
+img { border:none;}
+.loginBG { width:656px; height:303px; border:#5d82ab solid 1px;border-radius:5px; background:#FFF;}
+.login {width:656px; height:303px;background:#FFF;}
+.login tr td { font-size:12px; color:#000;}
+.close {float:right;display:block;width:50px; height:19px; background:url(/images/login_close.gif) no-repeat left; background-position:0px -1px; text-indent:-9999px; outline:none;}
+.button2 { display:block; width:88px; height:67px; border:none; background:url(/images/login_10.png) no-repeat;text-indent:-9999px; }
+.user_login { width:178px; height:20px; line-height:20px; color:#000000;border:#6f8fb5 solid 1px;}
+#user_email { width:178px; height:20px; line-height:20px; color:#000000;border:#6f8fb5 solid 1px;}
+.password { width:178px; height:20px; line-height:20px; color:#000000;border:#6f8fb5 solid 1px;}
+.wait { display:none;}
+#wait { display:none;}
+.boxbig { width:303px; height:225px; border:#c4c4c4 solid 1px;border-radius:10px; margin:auto; margin-top:15px;
+-moz-box-shadow:1px 1px 4px #c4c4c4;-webkit-box-shadow:1px 1px 4px #c4c4c4;box-shadow:1px 1px 4px #c4c4c4,-1px -1px 4px #c4c4c4;
+}
+#login_btn { width:122px; height:37px; background:url(/images/en_login_2.gif); border:none;}
+#register_btn {width:122px; height:37px; background:url(/images/en_login_3.gif); border:none;}
+</style>
+
+
+<div id="login_box" class="loginBG">
+	<div class="login">
+    	<table width="100%" cellpadding="0" cellspacing="0">
+        	<tbody><tr style="background:#c1d9f3;">
+            <td><span class="wait">&nbsp;&nbsp;<img src="./SPI example for STM32F100RB (STM32VL Discovery) « CooCox Forum_files/loading.gif" alt=""></span></td>
+            <td height="26" valign="top"><a href="http://www.coocox.org/forum/topic.php?id=994#" class="close" title="close">close</a></td></tr>
+            <tr>
+            <td width="50%">
+            <div class="boxbig">
+            <form id="callAjaxForm">  
+        	<fieldset>
+            <table width="85%" height="215" style="margin:auto;">
+            <tbody><tr><td colspan="2" style="font-size:20px; color:#007fdc; text-align:center;">Quick &nbsp;&nbsp; login </td></tr>
+            <tr>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E-mail&nbsp;&nbsp;</td>
+            <td><input id="user_login" class="user_login" name="user_login" type="text" autocomplete="off"></td>
+            </tr>
+            <tr>
+            <td>Password&nbsp;&nbsp;</td>
+            <td><input id="password" class="password" name="password" type="password" autocomplete="off"></td>
+            </tr>
+            <tr><td>&nbsp;</td>
+            <td><input name="remember" type="checkbox" id="remember" value="1"> Stay signed in </td>
+            </tr>
+			<tr><td>&nbsp;</td>
+			<td><a href="http://www.coocox.org/forum/bb-recover.php" target="_blank">Forgot password ?</a></td></tr>
+            <tr><td colspan="2" align="center"><input id="login_btn" type="button" value="" onclick="return onFormSubmit()"> </td></tr>
+            </tbody></table>
+            </fieldset>
+        	</form>
+            </div>
+            </td>
+            <td width="50%">
+            <div class="boxbig">
+            <form id="callAjaxForm1">  
+        	<fieldset>
+            <table width="85%" height="215" style="margin:auto;">
+             <tbody><tr><td colspan="2" style="font-size:20px; color:#3d9800; text-align:center;">One key registered</td></tr>
+            <tr>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E-mail&nbsp;&nbsp;</td>
+            <td><input id="user_email" name="user_email" type="text" value="" autocomplete="off" onblur="checkEmail();"></td>
+            </tr>
+            <tr>
+            </tr><tr>
+            <td>Password&nbsp;&nbsp;</td>
+            <td><input id="password1" class="password" name="password" type="password" value="" autocomplete="off"></td>
+            </tr>
+            <tr>
+            </tr><tr>
+            <td>&nbsp;&nbsp;&nbsp;Confirm&nbsp;&nbsp;</td>
+            <td><input id="password2" class="password" name="password2" type="password" value="" autocomplete="off" onblur="javascript:if($(&#39;#password2&#39;).val() != $(&#39;#password1&#39;).val()){$(&#39;#notification1&#39;).html(&#39;Two password input inconsistent&#39;); }else{$(&#39;#notification1&#39;).html(&#39;&#39;)}"></td>
+            </tr>
+            <tr>
+            <td>Username&nbsp;&nbsp;</td>
+            <td><input id="user_login1" class="user_login" name="user_login" type="text" value="" autocomplete="off"></td>
+            </tr><tr><td>Auth code</td><td>
+	<input type="hidden" id="seccodehidden" name="seccodehidden" value="90b3dspZioLoA7R0YpgKplLgNNlHbBrhA2zCaFZF0Vz7gJY"><input type="text" style="margin-right:5px;width:100px;" value="" id="seccode" tabindex="2" name="seccode" class="user_login"> <img style="vertical-align:middle;" id="seccode_img" src="./SPI example for STM32F100RB (STM32VL Discovery) « CooCox Forum_files/seccode.php"> <a href="javascript:reflushSecode();">Change another</a></td></tr><tr><td colspan="2" align="center"><input id="emailcheck" name="emailcheck" value="1" checked="checked" type="checkbox"> Sign up for E-mail Alerts</td></tr>
+            <tr><td colspan="2" align="center"><input type="hidden" id="list_id" value="7">&nbsp;&nbsp;&nbsp;&nbsp;<input id="register_btn" type="button" value="" onclick="return checkSeccode()"> </td></tr>
+            </tbody></table>
+            </fieldset>
+        	</form>
+            </div>
+            </td>
+            </tr>
+            <tr><td height="20" colspan="2">
+            <div style="height:20px; width:100%; text-align:center;">
+            	<h3 id="notification1" style="color:#F00; text-indent:10px; font-size:100%;"></h3>
+            </div>
+            </td></tr>
+        </tbody></table>
+    </div>
+</div></body></html>

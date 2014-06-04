@@ -1,0 +1,123 @@
+@charset "utf-8";
+*{ 
+    padding:0; 
+    margin:0; 
+} 
+/********Frame Style**********/
+.top{width:100%; margin:0px; padding:0px; text-align:left; margin-left:0px; }
+.logo{ width:15%;margin-top:10px; }
+.indextitle{
+	color:#666;
+	float:left;
+	font-size:110%;
+	font-weight:bold;
+	margin:0px;
+	padding:0px;
+	position:absolute;
+	left: 192px;
+	top: 34px;
+	
+}
+.indextitleselect{
+	color:#666;
+	float:right;
+	font-size:110%;
+	font-weight:bold;
+	position:absolute;
+	right: 10px;
+	top: 34px;
+}
+
+.pagetitle{ color:#6b90da;font-family:Arial;float:right; font-size:110%; font-weight:bold; margin:0px; padding:0px; position:absolute; right:15%; top: 40px; display:none;}
+
+.pagetitle a{color:#6b90da; font-size:14px; text-decoration:none; }
+.pagetitle a:visited{color:#6b90da; font-size:14px; text-decoration:none;}
+
+.topmenu{display:block; height:25px;float:left; width:100%;padding:5px 0px 3px 0px;}
+
+.blueline{width:99%; height:1px;background-color:#6b90da;  margin-top:5px;border-bottom:solid #fff 1px;}
+.main{margin:0;width:100%;}
+.homemenu{text-indent:5px;height:20px; padding:6px 0px 2px 0px;FILTER: progid:DXImageTransform.Microsoft.Gradient(gradientType=0,startColorStr=#ebeff9,endColorStr=#FFFFFF);border-bottom:#ebeff9 solid 1px; border-right:#ebeff9 solid 1px;border-left:#ebeff9 solid 1px; background-image:url(../images/menubg.gif);}
+
+
+
+.foot{ margin-top:2em;margin-bottom:2em; float:left; width:100%;}
+.foot_content{ 
+  padding: 0.8em 0 0 15%;
+  margin-bottom:0px; 
+  border-top: 1px solid #999; 
+  color: #666; }
+  
+
+/******************leftmenu************************/
+#navigation
+{
+	width:97%;
+	font-family:Arial, Helvetica;   
+	margin:29px 0px 1em 0px;
+	float:right;}
+
+
+#navigation ul
+{
+list-style-type:none; /*不显示项目符号如ul里的点号*/
+margin:0px;
+padding:0px;
+}
+
+#navigation li
+{margin:0px;
+padding:0px;
+
+    border-bottom:1px solid #fff;/*添加下划线*/
+}
+
+#navigation li a
+{
+    display:block; /*区块显示,超链接被设置成了块元素,当鼠标进入该块的任何部分时都被激活,而不是仅仅在文字上方时才被激活.*/
+padding:4px 5px 4px 1em;
+text-decoration:none;/*去掉文字的下划线*/
+border-left:12px solid #6b90da;/*左边的粗红边*/
+border-right:1px solid #FAFBFD;/*右侧的阴影*/
+}
+
+/*超链接的三个属性,实现动态效果*/
+#navigation li a:link,#navigation li a:visited
+{
+background-color:#ebeff9;
+color:#000;
+font-size:12px;
+font-weight:bold;
+}
+
+#navigation li a:hover /*鼠标指针经过时*//**/
+{
+ background-color:#ebeff9; /*改变背景色*/
+color:#6b90da;/*改变文字颜色*/
+}
+
+/********************************/
+
+
+
+li{line-height:1.3em;}
+
+/******************************/
+#leftcolumn {float:left; width:98%;margin:27px 0px 1em 5px;border-top: #FFFFFF solid 1px; font-family:Arial; font-weight:bold; background-color:#ebeff9;}
+#leftcolumn dl {width:100%; display:block;  border-bottom: #FFFFFF solid 1px;}
+.dropdown {width:100%;display:block;  border-bottom: #FFFFFF solid 1px;}
+.dropdown a, .dropdown a:active, .dropdown a:visited {cusor:hand; color:#000; text-decoration:none; background-color:#ebeff9;}
+.dropdown a:hover {background:#ebeff9; color:#6b90da; font-weight:bold; }
+.dropdown dt {width:91%;padding:2px; cursor:hand;}
+.dropdown .upperdd {width:84%;padding:4px 0px 4px 1em;text-decoration:none;border-left:12px solid #6b90da;}
+.dropdown .upperddsub {width:90%;padding:4px 0px 4px 1em;text-decoration:none; text-indent:30px; }
+.dropdown .upperddsub a{ color:#333;}
+.dropdown .upperddsub a.point{ color:#F60;}
+.dropdown .upperddsub a.forum{ color:#06c;}
+.dropdown dt:hover { color:#6b90da;font-weight:bold; }
+.dropdown dd {position:static; top:0px; overflow:hidden; width:100%; display:none; background:#ebeff9; opacity:0}
+.tensize{ font-size:11px}
+.title1 {color: #0066CC;font-size: 110%; font-weight:bold;}
+.redmark{ color:#FF0000; margin-top:5px;}
+.entry img {max-width:800px;width:expression(this.width>800 ? '800px' : true);}
+

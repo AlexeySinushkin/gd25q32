@@ -1,0 +1,439 @@
+/*
+Theme Name: Structure
+URI: http://www.coocox.org
+Description: The Structure theme for bbPress.
+Version: 0.2 Alpha
+Author: tianzhujun
+Author URI: http://www.coocox.org
+*/
+ul li { list-style-type: none; }
+p { margin: 8px 0; }
+img { border:0px;}
+
+/* Left, right, and center alignment */
+.left { float: left; margin: 0 10px 0px 0; }
+.right { float: right; margin: 0 0 0px 0px; }
+.center { margin: 10px auto; display: block; }
+
+a { color: #0073d6; text-decoration: none; }
+a:hover { color: #000; }
+
+h1 { 
+ font-size: 145%;
+ font-family:Arial; color:#000000;
+}
+	
+h2, h3, h4, h5, h6 { font-weight: normal; color: #333; }
+h2 { font-size: 1.2em; color:#000 }
+h3 { font-size: 1.3em; }
+h4 { font-size: 1.2em; }
+h5 { font-size: 1.1em; }
+h6 { font-size: 1em; }
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+	font-weight: normal;
+	text-decoration: none;
+	color: #0073d6;
+	}
+
+
+
+.rss-link {
+	padding-left: 20px;
+	background: url(images/feed-icon-16x16.gif) no-repeat 0 0;
+	}
+.breadcrumb { margin-bottom: 5px; }
+.breadcrumb .section-header { font-size: 1.1em; }
+#latest,#favorites {
+	background-color: #ddd;
+	margin-bottom: 3em;
+	width: 97%;
+	margin:0 auto;
+}
+#latest,#favorites th{height:20px !important;height:20px;}
+
+/* Body */
+body {width:100% !important;width:100%;width:expression((documentElement.clientWidth < 1024) ? "1002px" : "100%" );margin:0 auto; 
+ 	font-family: Verdana, sans-serif;
+	font-size:12px;
+	color:#000000;
+	background-color:#FFFFFF;
+	}
+#body-container {
+	width:100% !important;width:100%;margin:0 auto;} 
+
+/************************************************
+	Search form (navigation)
+************************************************/
+#search form {
+	float: right;
+	width: 35px;
+	display: inline;
+	padding: 0; margin: 0;
+	background: transparent;
+	border: none;
+	}
+#search input#s {
+	width: 35px;
+	color: #333;
+	background: #f7f7f7;
+	border: 1px solid #333;
+	}
+#search input#search-submit { display: none; }
+
+/************************************************
+	Containers
+************************************************/
+/* Container for content and sidebar */
+#container { 
+	width:100%; margin:0px; padding:0px;
+	}
+
+#content, #forums { }
+
+
+#topic-page #forums {padding: 0px;}
+
+/************************************************
+	Content
+************************************************/
+
+#sidebar .section-header, #sidebar .menu h2 {
+	line-height:20px;color:#fff;border-bottom: 1px solid #fff; font-size:12px; font-weight:bold;background-image:url(../../images/bbg.gif);
+	}
+.section-header a, .section-header a:visited, .menu h2 a {  }
+
+#sidebar .section-header, #sidebar .menucomu h2 {
+	line-height:20px;color:#fff;border-bottom: 1px solid #fff; font-size:12px; font-weight:bold;background-image:url(../../images/hbg.gif);
+	}
+
+/************************************************
+	Tables
+************************************************/
+table {
+	
+	margin: 0 0 10px 0;
+	background: #fff;
+	}
+tr {
+	background: #fff;
+	height:25px;
+	}
+#profile-page table {
+	border: none;
+	}
+#profile-page tr {
+	background: transparent;
+	}
+
+tr.alt {
+	background: #f9f9f9;
+	}
+td {
+	height:25px;
+	padding:3px;
+	color:#333333;
+	}
+.login td {height:auto !important;height:autopx;padding:0px;}
+.login td tr {height:auto;}
+th {
+	color: #000;
+	background: #d3e9f4;
+	font-size: .95em;
+	text-align: center;
+	height:20px;
+	}
+th a, th a:visited  {
+	color: #0073cf;
+	font-size: .95em;
+	font-weight: bold;
+	}
+th.topic { width: 60%; }
+th.posts { width: 10%; }
+th.last-poster{ width: 30%;}
+
+.sticky, .super-sticky { font-size: .9em; font-weight: bold; background-color:#eeeeee }
+
+/************************************************
+	Topics (threads)
+************************************************/
+.infobox {	margin:0 auto;
+	margin-top:5px;
+	width:96%;
+	background: #fff;
+	margin-bottom:5px;
+	font-size:12px;
+	}
+#topic-info h3, #topic-tags h3 {
+	margin: 0;
+	padding: 0;
+	font-size: 1.1em;
+	}
+#topic-info {
+	float: left;
+	width: 550px;
+	}
+#topic-info li {
+	padding: 0px;
+	}
+#topic-tags {
+	float: left;
+	}
+#topic-tags #othertags {
+	float: left;
+	width: 99%;
+	padding: 3px;
+	}
+	
+#topic-tags ul {
+float:left;
+margin-left:0px;
+
+	}
+#topic-tags ul li {
+	float:left;
+	margin-top: 2px;
+background-color:#CCCCCC;
+	}
+
+#topic-tags #tag-form {
+	margin-top:2px;
+	margin-right:10px;
+	float: right;
+	width:30%;
+	}
+#yourtaglist li	{
+	width:80px; margin:5px 5px;;float:left;
+	}
+
+#thread {
+	margin:0 auto;
+	width:96%;
+	background-color:#fff;
+	margin-top:5px;
+	list-style-type: none;
+	}
+#thread li {
+	margin-left:0px;
+	}
+#thread .byline {
+	float: left;
+	font-size: .95em;
+	border:solid #CCCCCC 1PX;
+	}
+#thread .entry {
+	width:100% !important;width:99%;
+	
+	border:solid #CCCCCC 1PX;
+	margin-bottom:10px;
+	float:left;
+	}
+
+
+/************************************************
+	Profile page
+************************************************/
+.profile {
+	
+	margin: 0 0 15px 0;
+	padding: 10px;
+	background: #fff;
+	border: 1px solid #ccc;
+	}
+#profile-page .avatar {
+	float: left;
+	margin-right: 20px;
+	}
+#profile-page dl {
+	float: left;
+	width: 80%;
+	margin: 0 0 15px 0;
+	padding-top: 0;
+	}
+#profile-page dd {
+	margin-left: 10px;
+	}
+#profile-page ol {
+	margin: 15px 0 15px 35px;
+	}
+#profile-page ol li {
+	margin: 2px 0;
+	}
+#profile-page ol li a {
+	font-weight: bold;
+	}
+#profile-page ol li .freshness {
+	font-size: .95em;
+	color: #555;
+	display: block;
+	}
+
+/************************************************
+	Forms
+************************************************/
+fieldset {
+border:none;
+	padding: 0;
+	margin: 0;
+	}
+
+.infobox form {
+	display: inline;
+	padding: 0;
+	background: transparent;
+	border: none;
+	}
+input {
+	color: #333;
+	background: #f7f7f7;
+	border: 1px solid #ccc;
+	}
+textarea {
+	color: #333;
+	background: #f7f7f7;
+	border: 1px solid #ccc;
+	}
+
+
+#topic-tags input {
+	color: #333;
+	margin: 14px 0 0 0;
+	background: #f7f7f7;
+	}
+#topic-tags #tagformsub {
+	color: #333;
+	border: 1px solid #ccc;
+	}
+
+#postform input, #postform label, #postform textarea {
+	width: 90%;
+	}
+#topic-page textarea {
+	width: 90%;
+	}
+#postform input, #profile-page input, .submit input {
+	padding: 5px 0px;
+	}
+#postform input {
+	margin: 2px 0 0 0;
+	}
+#profile-page input {
+	padding: 2px 5px;
+	}
+
+input#postformsub, .submit input {
+	width: 100px;
+	margin-right: 15px;
+	cursor: pointer;
+	}
+#tagformsub, #resolvedformsub {
+	cursor: pointer;
+	}
+#profile-page legend {
+	margin-bottom: 15px;
+	font: 1.2em ;
+	color: #0073d6;
+	}
+
+/*.login input {
+	width: 50%;
+	margin-bottom: 10px;
+	}
+.login #remember {
+	width: 10px;
+	margin: 5px 0 0 5px;
+	}*/
+
+/************************************************
+	Sidebar
+************************************************/
+#sidebar {	margin:0  auto;
+
+	width: 99%;
+	}
+.menu {
+	width: 99%;
+	margin: 12px 0;
+	border:solid 1px #ddd;
+	background-color:#F2F5FB;
+	
+	}
+.menucomu {
+	width: 99%;
+	margin: 12px 0;
+	border:solid 1px #ddd;
+	background-color:#fff;
+	
+	}
+
+.menucomu2 {
+	width: 99%;
+	margin: 12px 0;
+	/*border:solid 1px #ddd;*/
+	background-color:#fff;
+	
+	}
+
+/************************************************
+	Footer
+************************************************/
+.foot{ margin-top:2em;margin-bottom:2em; float:left;width:100% !important; width:100%;}
+.foot_content{ 
+  margin-bottom:0px; 
+  border-top: 1px solid #CCCCCC; 
+  color: #666; }
+
+
+#footer {
+	color: #fff;
+	clear: both;
+	width: 99%;
+	margin: 0px auto;
+	border-top: 1px solid #cccccc;
+	}
+
+/**************************************************/
+#choosediv{width:98%;text-align:left; padding:1px 0px;  font-size:11px; font-weight:bold;
+}
+#choosediv .choosetag{ width:88px;height:25px; padding:0px;background-color:#eeeeee; font-weight:bold; color:#6B90DA; font-size:11px;}
+#choosediv .text{ width:150px; float:left;}
+h2.post-form {
+	border-bottom-width: 0;
+	font-size:130%;
+	margin-top:5px;}
+.page-numbers{ margin: 0px 2px; font-weight:bold;}
+#addpostform{
+background-color:#fff; display:none;width:96% !important;width:96%; margin:0 auto; }
+.navigation-links h2 {
+margin:10px auto;
+width:96%;
+	background: #fff;
+	}
+.required{ color:#FF0000;}
+#userinfo { margin-top: 10px; }
+
+#userinfo dt { font-weight: bold; }
+
+#userinfo dd { margin: 0 0 5px; } 
+
+#useractivity { margin: 15px 0 5px; }
+.user-recent { margin: 0 0 10px; clear:both; }
+.user-recent ol { margin: 5px 28px 0 0; }
+
+.user-recent ol { margin: 5px 0 0 28px; }
+
+.user-recent ol li { margin: 0 0 3px; }
+.bgc{ background-color:#FFFFFF;}
+.greenfont{
+ font-weight:bold;
+  color: #3A9457; 
+  font-size: 170%; 
+ font-family:Arial;
+}
+
+#pass2{width:150px !important;width:150px;}
+
+
+.addpost{float:right;width:150px;cursor:pointer; font-size:100%; padding: 5px 10px 8px 5px;font-weight:bold; text-align:right;}
+.tobe{color:#0073D6; font-weight:bold; font-size:110%;}
+#cke_40_label { display:inline;}
+#cke_44_label { display:inline;}
