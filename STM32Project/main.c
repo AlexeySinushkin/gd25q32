@@ -45,46 +45,49 @@ uint8_t sendData=0x00;
 int i;
 void SPI_test(void){
 
-    RCC_APB2PeriphClockCmd (RCC_APB2Periph_USART1 | RCC_APB2Periph_AFIO  | RCC_APB2Periph_GPIOA | RCC_APB2Periph_SPI1, ENABLE);
+    RCC_APB2PeriphClockCmd (RCC_APB2Periph_USART1 | RCC_APB2Periph_AFIO  | 
+                            RCC_APB2Periph_GPIOA | RCC_APB2Periph_SPI1, ENABLE);
     RCC_APB1PeriphClockCmd(RCC_APB1Periph_SPI2,ENABLE);
 
     GPIO_InitTypeDef GPIO_InitStructure;
     USART_InitTypeDef USART_InitStructure;
     SPI_InitTypeDef SPI_InitStructure;
 
-      /* Configure USART1 Tx (PA.09) as alternate function push-pull */
+      /* Configure USART1 Tx (PA.09) as alternate function push-pull 
       GPIO_InitStructure.GPIO_Pin = GPIO_Pin_9;
       GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
       GPIO_InitStructure.GPIO_Speed = GPIO_Speed_10MHz;
-      GPIO_Init(GPIOA, &GPIO_InitStructure);
+      GPIO_Init(GPIOA, &GPIO_InitStructure);*/
 
-      /* Configure USART1 Rx (PA.10) as input floating */
+      /* Configure USART1 Rx (PA.10) as input floating 
       GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10;
       GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
-      GPIO_Init(GPIOA, &GPIO_InitStructure);
-      /*Usart init attributes 2400, 8N1*/
+      GPIO_Init(GPIOA, &GPIO_InitStructure);*/
+      /*Usart init attributes 2400, 8N1
       USART_InitStructure.USART_BaudRate = 4800 ;
       USART_InitStructure.USART_WordLength = USART_WordLength_8b;
       USART_InitStructure.USART_StopBits = USART_StopBits_1;
       USART_InitStructure.USART_Parity = USART_Parity_No;
       USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None;
       USART_InitStructure.USART_Mode = USART_Mode_Tx | USART_Mode_Rx ;
-      USART_Init(USART1, &USART_InitStructure);
-      /* Enable USART1 */
-      USART_Cmd(USART1, ENABLE);
+      USART_Init(USART1, &USART_InitStructure);*/
+      /* Enable USART1 
+      USART_Cmd(USART1, ENABLE);*/
 
       /* Configure SPI1 pins: SCK(PA5), MISO (Not needed because rec  only  PA6) and MOSI (PA7)  -------------------------------*/
-        GPIO_InitStructure.GPIO_Pin   = GPIO_Pin_5 | GPIO_Pin_7;
+        GPIO_InitStructure.GPIO_Pin   = GPIO_Pin_5 | GPIO_Pin_6 | GPIO_Pin_7;
         GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
         GPIO_InitStructure.GPIO_Mode  = GPIO_Mode_AF_PP;
         GPIO_Init(GPIOA, &GPIO_InitStructure);
 
-        /* Configure PA4 as CS (Chip select) and PA6 as A0 (data /disp select) -------------------------------*/
-              GPIO_InitStructure.GPIO_Pin   = GPIO_Pin_4 | GPIO_Pin_6;
+        /* Configure PA4 as CS (Chip select)  -------------------------------*/
+              GPIO_InitStructure.GPIO_Pin   = GPIO_Pin_4 | GPIO_Pin_11 | GPIO_Pin_12;//
               GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
               GPIO_InitStructure.GPIO_Mode  = GPIO_Mode_Out_PP;
               GPIO_Init(GPIOA, &GPIO_InitStructure);
-
+          
+              GPIOA->BSRR=GPIO_Pin_4;
+              
         /* SPI1 Configuration ----------------------------------------------------*/
         /*
          * Mode:Master
@@ -107,33 +110,33 @@ void SPI_test(void){
           /* Enable SPI1 */
           SPI_Cmd(SPI1, ENABLE);
           //Settings for slave
-          SPI_InitStructure.SPI_Direction = SPI_Direction_2Lines_FullDuplex;
+          /*SPI_InitStructure.SPI_Direction = SPI_Direction_2Lines_FullDuplex;
           SPI_InitStructure.SPI_Mode = SPI_Mode_Slave;
           SPI_Init(SPI2, &SPI_InitStructure);
-          SPI_Cmd(SPI2,ENABLE);
+          SPI_Cmd(SPI2,ENABLE);*/
       //printf(("Started!\n\r"));
-
+sendData=5;
+GPIOA->BSRR=GPIO_Pin_11;//WP
+GPIOA->BSRR=GPIO_Pin_12;//HOLD
  while(1){
-     if(sendData%8<4){
-         GPIO_WriteBit(GPIOA,GPIO_Pin_4,Bit_SET);
-     }else{
-         GPIO_WriteBit(GPIOA,GPIO_Pin_4,Bit_RESET);
-     }
-     if(sendData%16<8){
-         GPIO_WriteBit(GPIOA,GPIO_Pin_6,Bit_SET);
-     }else{
-         GPIO_WriteBit(GPIOA,GPIO_Pin_6,Bit_RESET);
-     }
-
+     GPIOA->BRR=GPIO_Pin_4;
+     
      while (SPI_I2S_GetFlagStatus(SPI1, SPI_I2S_FLAG_TXE) == RESET);
      SPI_I2S_SendData(SPI1,sendData);
-     //printf("send data: %02x\n\r",sendData);
-     while(SPI_I2S_GetFlagStatus(SPI2,SPI_I2S_FLAG_RXNE)== RESET);
-     recData= SPI_I2S_ReceiveData(SPI2);
-     //printf("rec data: %02x\n\r",recData);
-     for(i=0;i<1000000;i++);
-     sendData++;
- }
+     //receive dummy
+     while(SPI_I2S_GetFlagStatus(SPI1,SPI_I2S_FLAG_RXNE)== RESET);
+     recData= SPI_I2S_ReceiveData(SPI1);     
+     
+     //send dummy
+     while (SPI_I2S_GetFlagStatus(SPI1, SPI_I2S_FLAG_TXE) == RESET);
+     SPI_I2S_SendData(SPI1,0xFF);
+     //receive data
+     while(SPI_I2S_GetFlagStatus(SPI1,SPI_I2S_FLAG_RXNE)== RESET);
+     recData= SPI_I2S_ReceiveData(SPI1);
+     
+     GPIOA->BSRR=GPIO_Pin_4;     
+     recData++;
+  }
 }
 
 int main()

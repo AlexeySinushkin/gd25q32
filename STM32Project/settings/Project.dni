@@ -1,5 +1,5 @@
 [DebugChecksum]
-Checksum=1591109002
+Checksum=-522566263
 [DisAssemblyWindow]
 NumStates=_ 1
 State 1=_ 1
@@ -20,13 +20,6 @@ UseTrigger=1
 TriggerName=main
 LimitSize=0
 ByteLimit=50
-[CallStackLog]
-Enabled=0
-[DriverProfiling]
-Enabled=0
-Mode=1
-Graph=0
-Symbiont=0
 [InterruptLog]
 LogEnabled=0
 SumEnabled=0
@@ -46,13 +39,6 @@ ActionState=1
 [TraceHelper]
 Enabled=0
 ShowSource=1
-[Log file]
-LoggingEnabled=_ 0
-LogFile=_ ""
-Category=_ 0
-[TermIOLog]
-LoggingEnabled=_ 0
-LogFile=_ ""
 [Breakpoints]
 Count=0
 [Stack]
@@ -65,10 +51,32 @@ UseTrigger=1
 TriggerName=main
 LimitSize=0
 ByteLimit=50
+[CallStack]
+ShowArgs=0
+[Disassembly]
+MixedMode=1
+[Log file]
+LoggingEnabled=_ 0
+LogFile=_ ""
+Category=_ 0
+[TermIOLog]
+LoggingEnabled=_ 0
+LogFile=_ ""
+[CallStackLog]
+Enabled=0
+[DriverProfiling]
+Enabled=0
+Mode=0
+Graph=0
+Symbiont=0
+Exclusions=
 [Disassemble mode]
 mode=0
 [Breakpoints2]
-Count=0
+Bp0=_ 1 "EMUL_CODE" "{$PROJ_DIR$\main.c}.138.6" 0 0 1 "" 0 "" 0
+Count=1
 [Aliases]
-Count=0
-SuppressDialog=0
+A0=_ "D:\Projects\GitHub\gd25q32\STM32Project\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_gpio.c" "C:\Work\GitHub\gd25q32\STM32Project\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_gpio.c"
+A1=_ "D:\Projects\GitHub\gd25q32\STM32Project\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c" "C:\Work\GitHub\gd25q32\STM32Project\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c"
+Count=2
+SuppressDialog=1
