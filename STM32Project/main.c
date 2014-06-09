@@ -13,8 +13,8 @@ GPIO_InitTypeDef  GPIO_InitStructure;
 
 void RCC_Config()
 {
-  /* Enable GPIOx Clock */
-  RCC_APB1PeriphClockCmd(RCC_APB1Periph_PWR, ENABLE);
+  /* Enable GPIOx Clock 
+  RCC_APB1PeriphClockCmd(RCC_APB1Periph_PWR, ENABLE);*/
   
   /* Enable the GPIO_LED Clock */
   RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA | RCC_APB2Periph_GPIOB | 
@@ -40,17 +40,19 @@ void RCC_Config()
 
 
 
-uint8_t recData;
+uint16_t recData;
 uint8_t sendData=0x00;
 int i;
 void SPI_test(void){
 
+  RCC_APB1PeriphClockCmd(RCC_APB1Periph_PWR, ENABLE);
     RCC_APB2PeriphClockCmd (RCC_APB2Periph_USART1 | RCC_APB2Periph_AFIO  | 
-                            RCC_APB2Periph_GPIOA | RCC_APB2Periph_SPI1, ENABLE);
-    RCC_APB1PeriphClockCmd(RCC_APB1Periph_SPI2,ENABLE);
+                            RCC_APB2Periph_GPIOA | RCC_APB2Periph_GPIOC 
+                              | RCC_APB2Periph_SPI1, ENABLE);
+    //RCC_APB1PeriphClockCmd(RCC_APB1Periph_SPI2,ENABLE);
 
     GPIO_InitTypeDef GPIO_InitStructure;
-    USART_InitTypeDef USART_InitStructure;
+    //USART_InitTypeDef USART_InitStructure;
     SPI_InitTypeDef SPI_InitStructure;
 
       /* Configure USART1 Tx (PA.09) as alternate function push-pull 
@@ -81,12 +83,18 @@ void SPI_test(void){
         GPIO_Init(GPIOA, &GPIO_InitStructure);
 
         /* Configure PA4 as CS (Chip select)  -------------------------------*/
-              GPIO_InitStructure.GPIO_Pin   = GPIO_Pin_4 | GPIO_Pin_11 | GPIO_Pin_12;//
+              GPIO_InitStructure.GPIO_Pin   = GPIO_Pin_4;//
               GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
               GPIO_InitStructure.GPIO_Mode  = GPIO_Mode_Out_PP;
-              GPIO_Init(GPIOA, &GPIO_InitStructure);
-          
-              GPIOA->BSRR=GPIO_Pin_4;
+              GPIO_Init(GPIOA, &GPIO_InitStructure);              
+              GPIOA->BSRR=GPIO_Pin_4;          
+              
+              /*
+              //землю на PC4
+              GPIO_InitStructure.GPIO_Pin   = GPIO_Pin_4;
+              GPIO_Init(GPIOC, &GPIO_InitStructure);
+              GPIOC->BRR=GPIO_Pin_4;*/
+
               
         /* SPI1 Configuration ----------------------------------------------------*/
         /*
@@ -100,42 +108,54 @@ void SPI_test(void){
           SPI_InitStructure.SPI_Direction = SPI_Direction_2Lines_FullDuplex;
           SPI_InitStructure.SPI_Mode = SPI_Mode_Master;
           SPI_InitStructure.SPI_DataSize = SPI_DataSize_8b;
+          //If CPOL is reset, the SCK pin has a low-level idle state.
           SPI_InitStructure.SPI_CPOL = SPI_CPOL_High;
           SPI_InitStructure.SPI_CPHA = SPI_CPHA_2Edge;
           SPI_InitStructure.SPI_NSS = SPI_NSS_Soft;
           SPI_InitStructure.SPI_FirstBit = SPI_FirstBit_MSB;
-          SPI_InitStructure.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_64;
+          SPI_InitStructure.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_8;
           SPI_InitStructure.SPI_CRCPolynomial = 8;
           SPI_Init(SPI1, &SPI_InitStructure);
+          
+          //SPI_SSOutputCmd(SPI1, ENABLE);        
+          
           /* Enable SPI1 */
           SPI_Cmd(SPI1, ENABLE);
+
           //Settings for slave
           /*SPI_InitStructure.SPI_Direction = SPI_Direction_2Lines_FullDuplex;
           SPI_InitStructure.SPI_Mode = SPI_Mode_Slave;
           SPI_Init(SPI2, &SPI_InitStructure);
           SPI_Cmd(SPI2,ENABLE);*/
       //printf(("Started!\n\r"));
-sendData=5;
-GPIOA->BSRR=GPIO_Pin_11;//WP
-GPIOA->BSRR=GPIO_Pin_12;//HOLD
+sendData=0x35;
+//GPIOA->BSRR=GPIO_Pin_11;//WP
+//GPIOA->BSRR=GPIO_Pin_12;//HOLD
  while(1){
      GPIOA->BRR=GPIO_Pin_4;
-     
+   
      while (SPI_I2S_GetFlagStatus(SPI1, SPI_I2S_FLAG_TXE) == RESET);
      SPI_I2S_SendData(SPI1,sendData);
      //receive dummy
      while(SPI_I2S_GetFlagStatus(SPI1,SPI_I2S_FLAG_RXNE)== RESET);
-     recData= SPI_I2S_ReceiveData(SPI1);     
+     recData = SPI_I2S_ReceiveData(SPI1);     
      
      //send dummy
      while (SPI_I2S_GetFlagStatus(SPI1, SPI_I2S_FLAG_TXE) == RESET);
      SPI_I2S_SendData(SPI1,0xFF);
      //receive data
      while(SPI_I2S_GetFlagStatus(SPI1,SPI_I2S_FLAG_RXNE)== RESET);
-     recData= SPI_I2S_ReceiveData(SPI1);
+     recData += SPI_I2S_ReceiveData(SPI1);
      
+     //send dummy
+     while (SPI_I2S_GetFlagStatus(SPI1, SPI_I2S_FLAG_TXE) == RESET);
+     SPI_I2S_SendData(SPI1,0xFF);
+     //receive data
+     while(SPI_I2S_GetFlagStatus(SPI1,SPI_I2S_FLAG_RXNE)== RESET);
+     recData += SPI_I2S_ReceiveData(SPI1);     
+
      GPIOA->BSRR=GPIO_Pin_4;     
-     recData++;
+      recData++;
   }
 }
 
