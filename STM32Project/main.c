@@ -46,7 +46,7 @@ int i;
 void SPI_test(void){
 
   RCC_APB1PeriphClockCmd(RCC_APB1Periph_PWR, ENABLE);
-    RCC_APB2PeriphClockCmd (RCC_APB2Periph_USART1 | RCC_APB2Periph_AFIO  | 
+    RCC_APB2PeriphClockCmd (RCC_APB2Periph_AFIO  | 
                             RCC_APB2Periph_GPIOA | RCC_APB2Periph_GPIOC 
                               | RCC_APB2Periph_SPI1, ENABLE);
     //RCC_APB1PeriphClockCmd(RCC_APB1Periph_SPI2,ENABLE);
@@ -77,11 +77,16 @@ void SPI_test(void){
       USART_Cmd(USART1, ENABLE);*/
 
       /* Configure SPI1 pins: SCK(PA5), MISO (Not needed because rec  only  PA6) and MOSI (PA7)  -------------------------------*/
-        GPIO_InitStructure.GPIO_Pin   = GPIO_Pin_5 | GPIO_Pin_6 | GPIO_Pin_7;
+        GPIO_InitStructure.GPIO_Pin   = GPIO_Pin_5  | GPIO_Pin_7;
         GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
         GPIO_InitStructure.GPIO_Mode  = GPIO_Mode_AF_PP;
         GPIO_Init(GPIOA, &GPIO_InitStructure);
+        
+GPIO_InitStructure.GPIO_Pin =GPIO_Pin_6;
+GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;
+GPIO_Init(GPIOA, &GPIO_InitStructure);
 
+        
         /* Configure PA4 as CS (Chip select)  -------------------------------*/
               GPIO_InitStructure.GPIO_Pin   = GPIO_Pin_4;//
               GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
@@ -128,14 +133,31 @@ void SPI_test(void){
           SPI_Init(SPI2, &SPI_InitStructure);
           SPI_Cmd(SPI2,ENABLE);*/
       //printf(("Started!\n\r"));
-sendData=0x35;
+
 //GPIOA->BSRR=GPIO_Pin_11;//WP
 //GPIOA->BSRR=GPIO_Pin_12;//HOLD
  while(1){
+   
+   //Write Enable (WREN) (06H)
      GPIOA->BRR=GPIO_Pin_4;
    
      while (SPI_I2S_GetFlagStatus(SPI1, SPI_I2S_FLAG_TXE) == RESET);
-     SPI_I2S_SendData(SPI1,sendData);
+     SPI_I2S_SendData(SPI1,0x06);
+     //receive dummy
+     while(SPI_I2S_GetFlagStatus(SPI1,SPI_I2S_FLAG_RXNE)== RESET);
+     recData = SPI_I2S_ReceiveData(SPI1);     
+     GPIOA->BSRR=GPIO_Pin_4;      
+   
+   
+     for(sendData=0;sendData<250;sendData++);
+   
+   
+   
+   //Read Status Register (RDSR) (05H
+     GPIOA->BRR=GPIO_Pin_4;
+   
+     while (SPI_I2S_GetFlagStatus(SPI1, SPI_I2S_FLAG_TXE) == RESET);
+     SPI_I2S_SendData(SPI1,0x05);
      //receive dummy
      while(SPI_I2S_GetFlagStatus(SPI1,SPI_I2S_FLAG_RXNE)== RESET);
      recData = SPI_I2S_ReceiveData(SPI1);     
@@ -145,16 +167,10 @@ sendData=0x35;
      SPI_I2S_SendData(SPI1,0xFF);
      //receive data
      while(SPI_I2S_GetFlagStatus(SPI1,SPI_I2S_FLAG_RXNE)== RESET);
-     recData += SPI_I2S_ReceiveData(SPI1);
-     
-     //send dummy
-     while (SPI_I2S_GetFlagStatus(SPI1, SPI_I2S_FLAG_TXE) == RESET);
-     SPI_I2S_SendData(SPI1,0xFF);
-     //receive data
-     while(SPI_I2S_GetFlagStatus(SPI1,SPI_I2S_FLAG_RXNE)== RESET);
-     recData += SPI_I2S_ReceiveData(SPI1);     
+     recData = SPI_I2S_ReceiveData(SPI1);
 
-     GPIOA->BSRR=GPIO_Pin_4;     
+     GPIOA->BSRR=GPIO_Pin_4;    
+     
       recData++;
   }
 }
