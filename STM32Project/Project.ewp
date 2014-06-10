@@ -2025,6 +2025,15 @@
       </file>
     </group>
     <file>
+      <name>$PROJ_DIR$\common.h</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\gd25q_driver.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\gd25q_driver.h</name>
+    </file>
+    <file>
       <name>$PROJ_DIR$\main.c</name>
     </file>
     <file>

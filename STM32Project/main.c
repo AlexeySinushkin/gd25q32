@@ -2,6 +2,7 @@
 
 // подключаем библиотеку CMSIS
 #include "stm32f10x.h"
+#include "gd25q_driver.h"
 #include "stm32f10x_gpio.h"
 #include "stm32f10x_rcc.h"
 #include "misc.h"
