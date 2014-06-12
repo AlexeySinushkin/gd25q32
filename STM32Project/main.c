@@ -37,9 +37,20 @@ void RCC_Config()
   RCC_LSEConfig(RCC_LSE_ON);  
 }
 
+void delay(void)
+{
+ u16 i=0;
+ for (i=0; i<1000; i++){
+   
+ }
+}  
+
 
  u8 GD_StateLow;
-u8 tmpBuf[256];
+//u8 tmpBuf[256];
+u8 GD_Page1[256];
+u8 GD_Page2[256];
+u8 GD_Page3[256];
 int main()
 {
   /*RCC_Config();
@@ -53,20 +64,42 @@ int main()
 
   GPIOC->BRR=GPIO_Pin_9;
 */
+  
   GD_Init();
   GD_WriteEnable();
   GD_StateLow = GD_GetStatusLow();
+  u16 i=0;  
   
-  u16 i=0;
+  /*
+
   for (i=0;i<256;i++){
     tmpBuf[i]=i;
   }
-  GD_WritePage(0x1000, &tmpBuf[0]);
+
+  GD_ReadPage(0x00, &tmpBuf[0]);*/
+ 
+
+  GD_ReadPage(0x23800, &GD_Page1[0]);
+  
+/*   while (i==0);
+  delay();
+  GD_WriteEnable();
+    GD_StateLow = GD_GetStatusLow();  
+  GD_WritePage(0x23800, &GD_Page1[0]);
     GD_StateLow = GD_GetStatusLow();
-  for (i=0;i<256;i++){
-    tmpBuf[i]=0;
-  }
-  GD_ReadPage(0x1000, &tmpBuf[0]);
+  
+  delay();
+  GD_WriteEnable();
+  GD_WritePage(0x23900, &GD_Page2[0]);
+    GD_StateLow = GD_GetStatusLow();
+    
+  delay();
+  GD_WriteEnable();    
+  GD_WritePage(0x23A00, &GD_Page3[0]);
+    GD_StateLow = GD_GetStatusLow();
+ */ 
+
+  
   while (1){
     u8 i=0;
     i++;
@@ -74,6 +107,8 @@ int main()
   }
   return 0;
 }
+
+
 
 
  
