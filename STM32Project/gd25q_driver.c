@@ -82,7 +82,7 @@ void GD_WritePage(u32 address, u8* data)
 	cs();
    
      while (SPI_I2S_GetFlagStatus(SPI1, SPI_I2S_FLAG_TXE) == RESET);
-     SPI_I2S_SendData(SPI1,0x03);
+     SPI_I2S_SendData(SPI1,0x02);
      
 	 //receive dummy
 		receive_dummy();
@@ -150,7 +150,7 @@ void GD_Read(u32 address, u8* result, u16 result_count){
 	 //receive dummy
 		receive_dummy();
 
-		u8 i=0;
+		u16 i=0;
 		for (i=0; i<result_count; i++){
 			send_dummy();
 			 

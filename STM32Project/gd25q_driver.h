@@ -6,6 +6,7 @@
 #endif 
 
 #include "common.h"
+extern void GD_Init(void);
 extern void GD_WritePage(u32 address, u8* data);
 extern void GD_ReadPage(u32 address, u8* result);
 extern void GD_WriteEnable();

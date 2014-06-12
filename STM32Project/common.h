@@ -1,7 +1,7 @@
 #ifndef __COMMON_H
 #define __COMMON_H
 
-//#include "stm32f0x_it.h"
+#include "stm32f10x.h"
 //#define SystemCoreClock  8000000
 typedef enum {FALSE = 0, TRUE = !FALSE} bool;
 #define u32 uint32_t
