@@ -301,6 +301,8 @@
           <state>$PROJ_DIR$</state>
           <state>$PROJ_DIR$\Libraries\CMSIS\CM3\DeviceSupport\ST\STM32F10x</state>
           <state>$PROJ_DIR$\Libraries\STM32F10x_StdPeriph_Driver\inc</state>
+          <state>$PROJ_DIR$\CoOS\kernel</state>
+          <state>$PROJ_DIR$\CoOS\portable</state>
         </option>
         <option>
           <name>CCStdIncCheck</name>
@@ -1884,6 +1886,99 @@
       </file>
     </group>
     <group>
+      <name>CooCox</name>
+      <file>
+        <name>$PROJ_DIR$\CoOS\kernel\coocox.h</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\CoOS\kernel\CoOS.h</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\CoOS\kernel\core.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\CoOS\kernel\event.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\CoOS\kernel\flag.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\CoOS\kernel\hook.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\CoOS\kernel\kernelHeap.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\CoOS\kernel\mbox.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\CoOS\kernel\mm.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\CoOS\kernel\mutex.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\CoOS\kernel\OsCore.h</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\CoOS\kernel\OsError.h</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\CoOS\kernel\OsEvent.h</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\CoOS\kernel\OsFlag.h</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\CoOS\kernel\OsKernelHeap.h</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\CoOS\kernel\OsMM.h</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\CoOS\kernel\OsMutex.h</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\CoOS\kernel\OsQueue.h</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\CoOS\kernel\OsServiceReq.h</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\CoOS\kernel\OsTask.h</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\CoOS\kernel\OsTime.h</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\CoOS\kernel\OsTimer.h</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\CoOS\kernel\queue.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\CoOS\kernel\sem.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\CoOS\kernel\serviceReq.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\CoOS\kernel\task.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\CoOS\kernel\time.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\CoOS\kernel\timer.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\CoOS\kernel\utility.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\CoOS\kernel\utility.h</name>
+      </file>
+    </group>
+    <group>
       <name>StdPerphLib</name>
       <file>
         <name>$PROJ_DIR$\Libraries\STM32F10x_StdPeriph_Driver\src\misc.c</name>
@@ -2035,6 +2130,9 @@
     </file>
     <file>
       <name>$PROJ_DIR$\main.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\CoOS\OsConfig.h</name>
     </file>
     <file>
       <name>$PROJ_DIR$\stm32f10x_it.c</name>

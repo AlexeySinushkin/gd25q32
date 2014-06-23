@@ -2,6 +2,8 @@
 
 // подключаем библиотеку CMSIS
 #include "stm32f10x.h"
+
+#include "OsConfig.h"
 #include "gd25q_driver.h"
 #include "stm32f10x_gpio.h"
 #include "stm32f10x_rcc.h"
@@ -14,8 +16,8 @@ GPIO_InitTypeDef  GPIO_InitStructure;
 
 void RCC_Config()
 {
-  /* Enable GPIOx Clock 
-  RCC_APB1PeriphClockCmd(RCC_APB1Periph_PWR, ENABLE);*/
+  /* Enable GPIOx Clock */
+  RCC_APB1PeriphClockCmd(RCC_APB1Periph_PWR, ENABLE);
   
   /* Enable the GPIO_LED Clock */
   RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA | RCC_APB2Periph_GPIOB | 
@@ -23,8 +25,8 @@ void RCC_Config()
 						 RCC_APB2Periph_AFIO | RCC_APB2Periph_ADC1, ENABLE);
     
   
-  /* Setup SysTick Timer for 1 msec interrupts  */
-  if (SysTick_Config(SystemCoreClock / 1000))
+  /* Setup SysTick Timer for 10 msec interrupts  */
+  if (SysTick_Config(SystemCoreClock / 100))
   { 
     /* Capture error */ 
     while (1);
@@ -53,8 +55,8 @@ u8 GD_Page2[256];
 u8 GD_Page3[256];
 int main()
 {
-  /*RCC_Config();
-  
+  RCC_Config();
+/*  
     //Configure the GPIO_LED pin 
   GPIO_InitStructure.GPIO_Pin =  GPIO_Pin_9;// ((uint16_t)0x0200) LED3_PIN GPIO_PIN[0]
   GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
@@ -69,7 +71,7 @@ int main()
   GD_WriteEnable();
   GD_StateLow = GD_GetStatusHigh();
   GD_StateLow = GD_GetStatusLow();
-  u16 i=0;  
+  
   
   /*
 
@@ -83,6 +85,7 @@ int main()
   //GD_ReadPage(0x23800, &GD_Page1[0]);
   GD_ReadPage(0x800, &GD_Page1[0]);
   /* 
+  u16 i=0;  
   while (i==0);
   delay();
   GD_WriteEnable();
