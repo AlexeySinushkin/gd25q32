@@ -67,6 +67,7 @@ int main()
   
   GD_Init();
   GD_WriteEnable();
+  GD_StateLow = GD_GetStatusHigh();
   GD_StateLow = GD_GetStatusLow();
   u16 i=0;  
   
@@ -78,10 +79,11 @@ int main()
 
   GD_ReadPage(0x00, &tmpBuf[0]);*/
  
-
-  GD_ReadPage(0x23800, &GD_Page1[0]);
-  
-/*   while (i==0);
+ 
+  //GD_ReadPage(0x23800, &GD_Page1[0]);
+  GD_ReadPage(0x800, &GD_Page1[0]);
+  /* 
+  while (i==0);
   delay();
   GD_WriteEnable();
     GD_StateLow = GD_GetStatusLow();  
@@ -97,7 +99,7 @@ int main()
   GD_WriteEnable();    
   GD_WritePage(0x23A00, &GD_Page3[0]);
     GD_StateLow = GD_GetStatusLow();
- */ 
+ */
 
   
   while (1){
