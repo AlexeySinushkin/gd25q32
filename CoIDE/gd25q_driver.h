@@ -4,7 +4,7 @@
 #ifdef __cplusplus
  extern "C" {
 #endif 
-
+//подключаем типы u8 u32 и т.р.
 #include "common.h"
 extern void GD_Init(void);
 extern void GD_WritePage(u32 address, u8* data);
