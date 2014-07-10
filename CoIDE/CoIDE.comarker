@@ -2,7 +2,7 @@
 <breakpoints>
 <breakpoint enabled="true" persistant="true" registered="true">
 <resource path="/CoIDE/main.c" type="1"/>
-<marker lineNumber="80" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
+<marker lineNumber="113" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
 <attrib name="enabled" value="true"/>
 <attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
 <attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
@@ -12,7 +12,7 @@
 <attrib name="persistant" value="true"/>
 <attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
 <attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
-<attrib name="message" value="Line breakpoint: main.c [line: 51]"/>
+<attrib name="message" value="Line breakpoint: main.c [line: 113]"/>
 <attrib name="registered" value="true"/>
 <attrib name="path" value="/CoIDE/main.c"/>
 <attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="C:\Work\GitHub\gd25q32\CoIDE\main.c"/>

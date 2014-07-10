@@ -1,15 +1,19 @@
 #include "stm32f10x.h"
 #include "stm32f10x_gpio.h"
 #include "stm32f10x_rcc.h"
+#include "misc.h" //NVIC
 #include <CoOs.h>
+#include <stdio.h>
 
 #include "common.h"
 #include "gd25q_driver.h"
 #include "stm32f10x_usart.h"
 
+
 #define TASK_STK_SIZE		  128	 		      /*!< Define stack size.					      */
 OS_STK   task_init_Stk[TASK_STK_SIZE];	 	  /*!< Stack of 'task_init' task.		*/
 void task_init    	(void *pdata);	  /*!< Initialization task.               */
+
 
 
 void RCC_Config()
@@ -20,7 +24,8 @@ void RCC_Config()
   /* Enable the GPIO_LED Clock */
   RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA | RCC_APB2Periph_GPIOB |
 						 RCC_APB2Periph_GPIOC | RCC_APB2Periph_SPI1 |
-						 RCC_APB2Periph_AFIO | RCC_APB2Periph_ADC1, ENABLE);
+						 RCC_APB2Periph_AFIO | RCC_APB2Periph_ADC1 |
+						 RCC_APB2Periph_USART1, ENABLE);
 
 
   /* Setup SysTick Timer for 10 msec interrupts  */
@@ -35,6 +40,22 @@ void RCC_Config()
 
   /* Enable LSE (Low Speed External Oscillation) */
   //RCC_LSEConfig(RCC_LSE_ON);
+}
+/**
+  * @brief  Configures the nested vectored interrupt controller.
+  * @param  None
+  * @retval None
+  */
+void NVIC_Configuration(void)
+{
+  NVIC_InitTypeDef NVIC_InitStructure;
+
+  /* Enable the USARTx Interrupt */
+  NVIC_InitStructure.NVIC_IRQChannel = USART1_IRQn;
+  NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
+  NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
+  NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+  NVIC_Init(&NVIC_InitStructure);
 }
 
 void UART_Config(){
@@ -52,6 +73,7 @@ void UART_Config(){
   GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10;
   GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
   GPIO_Init(GPIOA, &GPIO_InitStructure);
+
   /*Usart init attributes 2400, 8N1*/
   USART_InitStructure.USART_BaudRate = 4800 ;
   USART_InitStructure.USART_WordLength = USART_WordLength_8b;
@@ -62,52 +84,62 @@ void UART_Config(){
   USART_Init(USART1, &USART_InitStructure);
   /* Enable USART1 */
   USART_Cmd(USART1, ENABLE);
+
+  /* Enable the USART1 Receive interrupt: this interrupt is generated when the
+       USART1 receive data register is not empty */
+  USART_ITConfig(USART1, USART_IT_RXNE, ENABLE);
 }
 
-u8 GD_Page[256];
+
+u8 GDPage[256];
+#define RX_BUF_SIZE 256
+u8 rxString[RX_BUF_SIZE];
+u16 rxIndex=0;
 void taskGD(void *pdata)
 {
-	printf("Test UART: %02x\n\r",1);
+	//printf("Test UART: %02x\n\r",1);
 
 	  GD_WriteEnable();
 	  u8 GD_StateLow = GD_GetStatusLow();
 
-	  GD_ReadPage(0x23800, &GD_Page[0]);
-
-while(1){
+	  GD_ReadPage(0x23800, &GDPage[0]);
 
 
-}
+	  //USART_SendData(USART1, 0xE7);
+	  //while (USART_GetFlagStatus(USART1,USART_FLAG_TC)==RESET);
+
+	  printf(" Ready to flash\0");
+
+	while(1){
+
+
+	}
 
 	CoExitTask();	 /*!< Delete 'task_init' task. 	*/
 }
-uint8 UART_TxByte(const uint8 u8_byteTx)
-{
-  extern bool b_tx_flag;
-  USART1->DR = u8_byteTx;
-  while (!b_tx_flag);
-    b_tx_flag=0;
 
-    return 1;
-}
+//u8 rxByte;
+/**
+  * @brief  This function handles USARTx global interrupt request.
+  * @param  None
+  * @retval None
+  */
 void USART1_IRQHandler(void)
 {
-  extern bool b_tx_flag;
-  extern bool b_rx_flag;
-
-  if ( USART1->SR & 0x0040)
-    {
-      b_tx_flag = 1;
-    }
-  else if (  USART1->SR & 0x0020)
-    {
-      b_rx_flag = 1;
-    }
+    if (USART_GetFlagStatus(USART1,USART_FLAG_RXNE)==SET)
+	{
+    	u8 rxByte = USART_ReceiveData(USART1);
+    	if (rxIndex<RX_BUF_SIZE){
+    		rxString[rxIndex]=rxByte;
+    		rxIndex++;
+    	}
+	}
 }
 
 int main(void)
 {
 	RCC_Config();
+	NVIC_Configuration();
 	UART_Config();
 	GD_Init();
 

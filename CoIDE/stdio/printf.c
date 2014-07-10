@@ -6,7 +6,7 @@
  ********************************************************************************/
 #include <stdio.h>
 #include <stdarg.h>
-
+#include "stm32f10x_usart.h"
 
 /**
  * @brief  Transmit a char, if you want to use printf(), 
@@ -17,6 +17,8 @@
  */
 void PrintChar(char c)
 {
+	USART_SendData(USART1, c);
+	while (USART_GetFlagStatus(USART1,USART_FLAG_TC)==RESET);
 	/* Send a char like: 
 	   while(Transfer not completed);
 	   Transmit a char;

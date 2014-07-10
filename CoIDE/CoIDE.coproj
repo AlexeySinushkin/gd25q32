@@ -117,9 +117,9 @@
     <File name="stm_lib/inc/stm32f10x_gpio.h" path="stm_lib/inc/stm32f10x_gpio.h" type="1"/>
     <File name="CoOS/kernel/OsCore.h" path="CoOS/kernel/OsCore.h" type="1"/>
     <File name="CoOS/kernel/OsMutex.h" path="CoOS/kernel/OsMutex.h" type="1"/>
-    <File name="CoOS/kernel/OsTimer.h" path="CoOS/kernel/OsTimer.h" type="1"/>
     <File name="CoOS/kernel/sem.c" path="CoOS/kernel/sem.c" type="1"/>
     <File name="stm_lib/inc/stm32f10x_usart.h" path="stm_lib/inc/stm32f10x_usart.h" type="1"/>
+    <File name="CoOS/kernel/OsTimer.h" path="CoOS/kernel/OsTimer.h" type="1"/>
     <File name="CoOS/kernel/CoOS.h" path="CoOS/kernel/CoOS.h" type="1"/>
     <File name="CoOS/kernel/OsQueue.h" path="CoOS/kernel/OsQueue.h" type="1"/>
     <File name="CoOS/kernel/OsEvent.h" path="CoOS/kernel/OsEvent.h" type="1"/>
