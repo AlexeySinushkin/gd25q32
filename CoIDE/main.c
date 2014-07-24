@@ -92,9 +92,38 @@ void UART_Config(){
 
 
 u8 GDPage[256];
-#define RX_BUF_SIZE 256
-u8 rxString[RX_BUF_SIZE];
-u16 rxIndex=0;
+#define RX_BUF_SIZE 300
+#define PACKET_START 0xB1
+
+typedef enum
+{
+	Idle = 0,
+	WaitingStart,
+	ReceivingPacket,
+	Processing,
+	SendingAnswer
+} States;
+
+
+typedef struct
+{
+  States State:7;
+  u16 rxIndex:9;
+  u8 rxBuf[RX_BUF_SIZE];
+} Env_t;
+
+//extern __IO Env_t Env;
+__IO Env_t Env;
+
+OS_TCID sftmr;
+void PacketTimeOut(void)
+{
+ if (Env.State==ReceivingPacket){
+	 Env.State=WaitingStart;
+	 Env.rxIndex=0;
+ }
+}
+
 void taskGD(void *pdata)
 {
 	//printf("Test UART: %02x\n\r",1);
@@ -102,21 +131,41 @@ void taskGD(void *pdata)
 	  GD_WriteEnable();
 	  u8 GD_StateLow = GD_GetStatusLow();
 
-	  GD_ReadPage(0x23800, &GDPage[0]);
+	  Env.State=WaitingStart;
 
-
-	  //USART_SendData(USART1, 0xE7);
-	  //while (USART_GetFlagStatus(USART1,USART_FLAG_TC)==RESET);
-
-	  printf(" Ready to flash\0");
 
 	while(1){
+		//ждем новый пакет
+		while(Env.rxIndex==0);
+		if (Env.rxBuf[Env.rxIndex]==PACKET_START){
+			//good
+			Env.State=ReceivingPacket;
+			//создаем таймер таймаута получения 2 секунды хватит
+			sftmr = CoCreateTmr(TMR_TYPE_ONE_SHOT, 200,	0, PacketTimeOut);
+			StatusType result = CoStartTmr(sftmr);
+		}else{
+			Env.rxIndex=0;
+			Env.State=WaitingStart;
+			continue;
+		}
 
+		while(Env.State==ReceivingPacket){
+
+		}
 
 	}
 
 	CoExitTask();	 /*!< Delete 'task_init' task. 	*/
 }
+
+//GD_ReadPage(0x23800, &GDPage[0]);
+
+
+//USART_SendData(USART1, 0xE7);
+//while (USART_GetFlagStatus(USART1,USART_FLAG_TC)==RESET);
+
+//printf(" Ready to flash\0");
+
 
 //u8 rxByte;
 /**
@@ -129,9 +178,9 @@ void USART1_IRQHandler(void)
     if (USART_GetFlagStatus(USART1,USART_FLAG_RXNE)==SET)
 	{
     	u8 rxByte = USART_ReceiveData(USART1);
-    	if (rxIndex<RX_BUF_SIZE){
-    		rxString[rxIndex]=rxByte;
-    		rxIndex++;
+    	if (Env.rxIndex<RX_BUF_SIZE){
+    		Env.rxBuf[Env.rxIndex]=rxByte;
+    		Env.rxIndex++;
     	}
 	}
 }

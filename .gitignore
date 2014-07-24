@@ -221,3 +221,4 @@ Altium/Project Outputs*
 Altium/CAMtastic1.Cam
 STM32Project/settings/STM32Workspace.wsdt
 STM32Project/Project.dep
+CoIDE/CoIDE/CoIDE.elf.xcodeproj/project.pbxproj
