@@ -17,7 +17,7 @@
 </editorArea>
 <editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" partName="main.c" path="D:/Projects/GitHub/gd25q32/CoIDE/main.c" title="main.c" tooltip="D:/Projects/GitHub/gd25q32/CoIDE/main.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/CoIDE/main.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="3990" selectionTopPixel="1875"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="4060" selectionTopPixel="1770"/>
 </editor>
 </editors>
 <views>
@@ -54,7 +54,7 @@
 <element path="/CoIDE/syscalls"/>
 </expanded>
 <selection>
-<element path="/CoIDE/stdio/printf.c"/>
+<element path="/CoIDE"/>
 </selection>
 </viewState>
 </view>
@@ -164,7 +164,7 @@
 </presentation>
 </folder>
 </info>
-<info part="org.eclipse.ui.editorss" ratio="0.19341564" ratioLeft="141" ratioRight="588" relationship="4" relative="org.eclipse.ui.internal.ViewStack@1eb8dd7"/>
+<info part="org.eclipse.ui.editorss" ratio="0.109792285" ratioLeft="74" ratioRight="600" relationship="4" relative="org.eclipse.ui.internal.ViewStack@1eb8dd7"/>
 <info folder="true" part="org.eclipse.ui.internal.ViewStack@18a80d4" ratio="0.36984128" ratioLeft="233" ratioRight="397" relationship="4" relative="org.eclipse.ui.internal.ViewStack@99d56b">
 <folder activePageID="org.coocox.builder.ui.views.ProjectView" appearance="2" expanded="2">
 <page content="org.coocox.builder.ui.views.ProjectView" label="Project"/>
@@ -275,162 +275,160 @@
 <editors>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/CoIDE/main.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/CoIDE/stdio/printf.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/CoIDE/stdio/printf.c"/>
-<editor factoryID="org.eclipse.cdt.ui.ExternalEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="C:\Program Files (x86)\GNU Tools ARM Embedded\4.7 2012q4\arm-none-eabi\include\stdio.h" project="CoIDE"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/CoIDE/main.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/CoIDE/stm_lib/inc/stm32f10x_usart.h"/>
+<editor factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory" id="org.coocox.builder.ui.editors.ConfigEditor">
+<org.coocox.builder.ui.editors.ConfigEditor/>
+</editor>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/CoIDE/gd25q_driver.h"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/CoIDE/CoOS/kernel/CoOS.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/CoIDE/CoOS/kernel/timer.c"/>
+<editor factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory" id="org.coocox.builder.ui.editors.ConfigEditor">
+<org.coocox.builder.ui.editors.ConfigEditor/>
+</editor>
 </editors>
-<item historyLabel="printf.c" index="1">
-<position info="not_deleted" x="11626" y="5"/>
-</item>
-<item historyLabel="printf.c" index="1">
-<position info="not_deleted" x="12612" y="5"/>
-</item>
-<item historyLabel="printf.c" index="1">
-<position info="not_deleted" x="12077" y="9"/>
-</item>
-<item historyLabel="printf.c" index="1">
-<position info="not_deleted" x="693" y="9"/>
-</item>
-<item historyLabel="printf.c" index="1">
-<position info="not_deleted" x="11019" y="7"/>
-</item>
-<item historyLabel="printf.c" index="1">
-<position info="not_deleted" x="11079" y="0"/>
-</item>
-<item historyLabel="printf.c" index="1">
-<position info="not_deleted" x="10614" y="8"/>
-</item>
 <item historyLabel="main.c" index="0">
-<position info="not_deleted" x="3312" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="146" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="492" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="3695" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="3774" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="3782" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="520" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="3805" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="3781" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="3352" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="3805" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="3354" y="0"/>
-</item>
-<item historyLabel="printf.c" index="2">
-<position info="not_deleted" x="5934" y="9"/>
-</item>
-<item historyLabel="stdio.h" index="3">
-<position info="not_deleted" x="10871" y="0"/>
-</item>
-<item historyLabel="printf.c" index="2">
-<position info="not_deleted" x="10599" y="0"/>
-</item>
-<item historyLabel="main.c" index="4">
-<position info="not_deleted" x="3352" y="0"/>
-</item>
-<item historyLabel="stm32f10x_usart.h" index="5">
-<position info="not_deleted" x="12472" y="14"/>
-</item>
-<item historyLabel="main.c" index="4">
-<position info="not_deleted" x="3352" y="0"/>
-</item>
-<item historyLabel="main.c" index="4">
-<position/>
-</item>
-<item historyLabel="main.c" index="4">
-<position info="not_deleted" x="3943" y="0"/>
-</item>
-<item historyLabel="main.c" index="4">
-<position info="not_deleted" x="3872" y="0"/>
-</item>
-<item historyLabel="main.c" index="4">
-<position info="not_deleted" x="3575" y="4"/>
-</item>
-<item historyLabel="main.c" index="4">
-<position info="not_deleted" x="3569" y="0"/>
-</item>
-<item historyLabel="main.c" index="4">
-<position info="not_deleted" x="3593" y="26"/>
-</item>
-<item historyLabel="main.c" index="4">
-<position info="not_deleted" x="4540" y="38"/>
-</item>
-<item historyLabel="main.c" index="4">
-<position info="not_deleted" x="4610" y="0"/>
-</item>
-<item historyLabel="main.c" index="4">
-<position info="not_deleted" x="3619" y="46"/>
-</item>
-<item historyLabel="main.c" index="4">
-<position info="not_deleted" x="4555" y="0"/>
-</item>
-<item historyLabel="main.c" index="4">
-<position info="not_deleted" x="3629" y="0"/>
-</item>
-<item historyLabel="main.c" index="4">
-<position info="not_deleted" x="3891" y="0"/>
-</item>
-<item historyLabel="main.c" index="4">
-<position info="not_deleted" x="4550" y="0"/>
-</item>
-<item historyLabel="main.c" index="4">
-<position info="not_deleted" x="3619" y="46"/>
-</item>
-<item historyLabel="main.c" index="4">
-<position info="not_deleted" x="3780" y="0"/>
-</item>
-<item historyLabel="main.c" index="4">
-<position info="not_deleted" x="3485" y="40"/>
-</item>
-<item historyLabel="main.c" index="4">
-<position info="not_deleted" x="3787" y="17"/>
-</item>
-<item historyLabel="CoOS.h" index="6">
-<position info="not_deleted" x="5143" y="17"/>
-</item>
-<item historyLabel="main.c" index="4">
-<position info="not_deleted" x="3804" y="0"/>
-</item>
-<item historyLabel="CoOS.h" index="6">
-<position info="not_deleted" x="5143" y="17"/>
-</item>
-<item historyLabel="main.c" index="4">
-<position info="not_deleted" x="3775" y="11"/>
-</item>
-<item historyLabel="timer.c" index="7">
-<position info="not_deleted" x="8247" y="11"/>
-</item>
-<item historyLabel="main.c" index="4">
-<position info="not_deleted" x="3775" y="11"/>
-</item>
-<item historyLabel="main.c" index="4">
 <position info="not_deleted" x="3388" y="0"/>
 </item>
-<item active="true" historyLabel="main.c" index="4">
+<item historyLabel="main.c" index="0">
 <position info="not_deleted" x="3995" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="4501" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="4526" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="4634" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="4087" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="4736" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="4759" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="5600" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="5600" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="4919" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="4991" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="5014" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="5083" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="5375" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="5143" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="5600" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="5568" y="0"/>
+</item>
+<item historyLabel="printf.c" index="1">
+<position info="not_deleted" x="715" y="87"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="5568" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="5633" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="4944" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="4967" y="28"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="5150" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="5035" y="24"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="5315" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="5027" y="0"/>
+</item>
+<item historyLabel="Configuration" index="2"/>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="5027" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="5947" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="5753" y="23"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="4461" y="44"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="3841" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="4939" y="28"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="5760" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="5494" y="0"/>
+</item>
+<item historyLabel="gd25q_driver.h" index="3">
+<position/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="5494" y="0"/>
+</item>
+<item historyLabel="gd25q_driver.h" index="3">
+<position info="not_deleted" x="178" y="50"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="5494" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="4866" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="3943" y="43"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="3946" y="10"/>
+</item>
+<item historyLabel="CoOS.h" index="4">
+<position info="not_deleted" x="2891" y="10"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="3946" y="10"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="4357" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="3841" y="0"/>
+</item>
+<item historyLabel="Configuration" index="5"/>
+<item active="true" historyLabel="main.c" index="0">
+<position info="not_deleted" x="3841" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -439,17 +437,30 @@
 <actionBarAdvisor/>
 </window>
 <mruList>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="timer.c" tooltip="CoIDE/CoOS/kernel/timer.c">
-<persistable path="/CoIDE/CoOS/kernel/timer.c"/>
+<file factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory" id="org.coocox.builder.ui.editors.ConfigEditor" name="" tooltip="">
+<persistable>
+<org.coocox.builder.ui.editors.ConfigEditor/>
+</persistable>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="CoOS.h" tooltip="CoIDE/CoOS/kernel/CoOS.h">
 <persistable path="/CoIDE/CoOS/kernel/CoOS.h"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="gd25q_driver.c" tooltip="CoIDE/gd25q_driver.c">
-<persistable path="/CoIDE/gd25q_driver.c"/>
-</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="gd25q_driver.h" tooltip="CoIDE/gd25q_driver.h">
 <persistable path="/CoIDE/gd25q_driver.h"/>
+</file>
+<file factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory" id="org.coocox.builder.ui.editors.ConfigEditor" name="" tooltip="">
+<persistable>
+<org.coocox.builder.ui.editors.ConfigEditor/>
+</persistable>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="printf.c" tooltip="CoIDE/stdio/printf.c">
+<persistable path="/CoIDE/stdio/printf.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="timer.c" tooltip="CoIDE/CoOS/kernel/timer.c">
+<persistable path="/CoIDE/CoOS/kernel/timer.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="gd25q_driver.c" tooltip="CoIDE/gd25q_driver.c">
+<persistable path="/CoIDE/gd25q_driver.c"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="coocox.h" tooltip="CoIDE/CoOS/kernel/coocox.h">
 <persistable path="/CoIDE/CoOS/kernel/coocox.h"/>
@@ -474,15 +485,6 @@
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" tooltip="CoIDE/main.c">
 <persistable path="/CoIDE/main.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="syscalls.c" tooltip="CoIDE/syscalls/syscalls.c">
-<persistable path="/CoIDE/syscalls/syscalls.c"/>
-</file>
-<file factoryID="org.eclipse.cdt.ui.ExternalEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stdio.h" tooltip="C:\Program Files (x86)\GNU Tools ARM Embedded\4.7 2012q4\arm-none-eabi\include\stdio.h">
-<persistable path="C:\Program Files (x86)\GNU Tools ARM Embedded\4.7 2012q4\arm-none-eabi\include\stdio.h" project="CoIDE"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f10x_usart.c" tooltip="CoIDE/stm_lib/src/stm32f10x_usart.c">
-<persistable path="/CoIDE/stm_lib/src/stm32f10x_usart.c"/>
 </file>
 </mruList>
 </workbench>

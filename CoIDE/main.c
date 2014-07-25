@@ -93,6 +93,7 @@ void UART_Config(){
 
 u8 GDPage[256];
 #define RX_BUF_SIZE 300
+#define TX_BUF_SIZE 16
 #define PACKET_START 0xB1
 
 typedef enum
@@ -100,6 +101,7 @@ typedef enum
 	Idle = 0,
 	WaitingStart,
 	ReceivingPacket,
+	ReceivingTimeout,
 	Processing,
 	SendingAnswer
 } States;
@@ -109,7 +111,9 @@ typedef struct
 {
   States State:7;
   u16 rxIndex:9;
+  u8 txIndex:8;
   u8 rxBuf[RX_BUF_SIZE];
+  u8 txBuf[TX_BUF_SIZE];
 } Env_t;
 
 //extern __IO Env_t Env;
@@ -122,11 +126,13 @@ void PacketTimeOut(void)
 	 Env.State=WaitingStart;
 	 Env.rxIndex=0;
  }
+ //StatusType result = CoStopTmr(sftmr);
 }
 
 void taskGD(void *pdata)
 {
-	//printf("Test UART: %02x\n\r",1);
+	//создаем таймер таймаута получения 2 секунды хватит
+	sftmr = CoCreateTmr(TMR_TYPE_ONE_SHOT, 200,	0, PacketTimeOut);
 
 	  GD_WriteEnable();
 	  u8 GD_StateLow = GD_GetStatusLow();
@@ -137,20 +143,91 @@ void taskGD(void *pdata)
 	while(1){
 		//ждем новый пакет
 		while(Env.rxIndex==0);
-		if (Env.rxBuf[Env.rxIndex]==PACKET_START){
+		int i=0;
+		if (Env.rxBuf[0]==PACKET_START){
 			//good
 			Env.State=ReceivingPacket;
-			//создаем таймер таймаута получения 2 секунды хватит
-			sftmr = CoCreateTmr(TMR_TYPE_ONE_SHOT, 200,	0, PacketTimeOut);
+			//стартуем таймер
 			StatusType result = CoStartTmr(sftmr);
 		}else{
 			Env.rxIndex=0;
 			Env.State=WaitingStart;
 			continue;
 		}
+		u16 packetSizeWithStart=0;
+		while(Env.State==ReceivingPacket){//статус может изменить таймер таймаута
+			//0xB1 0x01 0x09
+			if (Env.rxIndex>3 && packetSizeWithStart==0){
+				packetSizeWithStart=Env.rxBuf[1]+
+						Env.rxBuf[2]*256+1;
+			}
+			else if(Env.rxIndex==packetSizeWithStart){
+				StatusType result = CoStopTmr(sftmr);
+				Env.State=Processing;
+				//check CRC
+				u8 crc=0;
+				for (i=1;i<packetSizeWithStart-2;i++){
+					crc+=Env.rxBuf[i];
+				}
+				if (crc==Env.rxBuf[packetSizeWithStart-2]&&
+						crc^0xAA==Env.rxBuf[packetSizeWithStart-1]){
 
-		while(Env.State==ReceivingPacket){
+				//processPacket();
+					if (Env.rxBuf[3]==0x03){//write page
+						u32 address=Env.rxBuf[4]|
+								Env.rxBuf[5]<<8 | Env.rxBuf[6]<<16 |
+								Env.rxBuf[7]<<24;
+						GD_WriteEnable();
+						GD_WritePage(address, &Env.rxBuf[8]);
+						GD_ReadPage(address, &GDPage[0]);
+						//check
+						bool badWrite=FALSE;
+						for (i=0;i<256;i++){
+							if (GDPage[i]!=Env.rxBuf[8+i]){
+								badWrite=TRUE;
+								break;
+							}
+						}
+						Env.State=SendingAnswer;
+						Env.txBuf[0]=0xB1;
+						Env.txBuf[1]=0x09;
+						Env.txBuf[2]=0x00;
+						Env.txBuf[3]=0x04;
+						Env.txBuf[4]=address;
+						Env.txBuf[5]=address>>8;
+						Env.txBuf[6]=address>>16;
+						Env.txBuf[7]=address>>24;
+						if (badWrite){
+							Env.txBuf[3]=0x06;
+						}
+						Env.txBuf[8]=0;
+						for (i=1;i<8;i++){
+							Env.txBuf[8]+=Env.txBuf[i];
+						}
+						Env.txBuf[9]=Env.txBuf[8]^0xAA;
+						Env.txIndex=0;
+						Env.State=SendingAnswer;
+					}
+					//processPacket();
+				}
 
+			}//Env.rxIndex==packetSizeWithStart
+
+		}//Env.State==ReceivingPacket
+		if (Env.State==SendingAnswer){
+			for(i=0;i<10;i++){
+				USART_SendData(USART1, Env.txBuf[i]);
+				while (USART_GetFlagStatus(USART1,USART_FLAG_TC)==RESET);
+			}
+			Env.rxIndex=0;
+			Env.State=WaitingStart;
+			continue;
+		}
+
+		if (Env.State==ReceivingTimeout){
+			Env.rxIndex=0;
+			Env.State=WaitingStart;
+			continue;
 		}
 
 	}
