@@ -111,7 +111,8 @@ typedef struct
 {
   States State:7;
   u16 rxIndex:9;
-  u8 txIndex:8;
+  u8 txIndex:7;
+  bool canListen:1;
   u8 rxBuf[RX_BUF_SIZE];
   u8 txBuf[TX_BUF_SIZE];
 } Env_t;
@@ -129,10 +130,27 @@ void PacketTimeOut(void)
  //StatusType result = CoStopTmr(sftmr);
 }
 
-void taskGD(void *pdata)
-{
+void taskSender(void *pdata){
+	int i=0;
+	while(1){
+		Env.txBuf[0]=0xB1;
+		Env.txBuf[1]=0x09;
+		Env.txBuf[2]=0x00;
+		Env.txBuf[3]=0x04;
+		for(i=0;i<10;i++){
+			USART_SendData(USART1, Env.txBuf[i]);
+			while (USART_GetFlagStatus(USART1,USART_FLAG_TC)==RESET);
+		}
+		CoTickDelay(500);//ждем 5 сек.
+	}
+}
+
+void taskGD(void *pdata){
+
 	//создаем таймер таймаута получения 2 секунды хватит
 	sftmr = CoCreateTmr(TMR_TYPE_ONE_SHOT, 200,	0, PacketTimeOut);
+	int i=0;
+
 
 	  GD_WriteEnable();
 	  u8 GD_StateLow = GD_GetStatusLow();
@@ -141,9 +159,10 @@ void taskGD(void *pdata)
 
 
 	while(1){
+		Env.canListen=TRUE;
 		//ждем новый пакет
 		while(Env.rxIndex==0);
-		int i=0;
+
 		if (Env.rxBuf[0]==PACKET_START){
 			//good
 			Env.State=ReceivingPacket;
@@ -160,9 +179,15 @@ void taskGD(void *pdata)
 			if (Env.rxIndex>3 && packetSizeWithStart==0){
 				packetSizeWithStart=Env.rxBuf[1]+
 						Env.rxBuf[2]*256+1;
+				if (packetSizeWithStart>RX_BUF_SIZE-6){
+					Env.rxIndex=0;
+					Env.State=WaitingStart;
+					continue;
+				}
 			}
 			else if(Env.rxIndex==packetSizeWithStart){
 				StatusType result = CoStopTmr(sftmr);
+				Env.canListen=FALSE;
 				Env.State=Processing;
 				//check CRC
 				u8 crc=0;
@@ -214,6 +239,7 @@ void taskGD(void *pdata)
 			}//Env.rxIndex==packetSizeWithStart
 
 		}//Env.State==ReceivingPacket
+
 		if (Env.State==SendingAnswer){
 			for(i=0;i<10;i++){
 				USART_SendData(USART1, Env.txBuf[i]);
@@ -255,7 +281,7 @@ void USART1_IRQHandler(void)
     if (USART_GetFlagStatus(USART1,USART_FLAG_RXNE)==SET)
 	{
     	u8 rxByte = USART_ReceiveData(USART1);
-    	if (Env.rxIndex<RX_BUF_SIZE){
+    	if (Env.canListen==TRUE && Env.rxIndex<RX_BUF_SIZE){
     		Env.rxBuf[Env.rxIndex]=rxByte;
     		Env.rxIndex++;
     	}
