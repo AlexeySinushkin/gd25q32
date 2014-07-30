@@ -17,7 +17,7 @@
 </editorArea>
 <editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" partName="main.c" path="D:/Projects/GitHub/gd25q32/CoIDE/main.c" title="main.c" tooltip="D:/Projects/GitHub/gd25q32/CoIDE/main.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/CoIDE/main.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="4060" selectionTopPixel="1770"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="5073" selectionTopPixel="2700"/>
 </editor>
 </editors>
 <views>
@@ -40,7 +40,7 @@
 </view>
 <view id="org.eclipse.debug.ui.ExpressionView" partName="Expressions">
 <viewState>
-<ExpressionKeySet ExpKeys="GD_Page,rxString,"/>
+<ExpressionKeySet ExpKeys=""/>
 </viewState>
 </view>
 <view id="org.coocox.component.ui.ComponentView" partName="Components">
@@ -218,8 +218,8 @@
 <hide_toolbar_item_id id="org.eclipse.ui.edit.text.toggleShowSelectedElementOnly"/>
 <hide_toolbar_item_id id="org.coocox.builder.ui.build"/>
 <hide_toolbar_item_id id="org.coocox.welcome.ui.action.welcome"/>
-<hide_toolbar_item_id id="org.coocox.codebugger.configuration.coideProgramDownloadAction"/>
 <hide_toolbar_item_id id="org.coocox.component.ui.ShowRepositoryAction"/>
+<hide_toolbar_item_id id="org.coocox.codebugger.configuration.coideProgramDownloadAction"/>
 <view id="org.eclipse.ui.console.ConsoleView"/>
 <view id="org.eclipse.debug.ui.DebugView"/>
 <view id="org.coocox.codebugger.trace.ui.traceview"/>
@@ -238,7 +238,7 @@
 <page content="org.eclipse.ui.internal.introview" label="LabelNotFound"/>
 </folder>
 </info>
-<info folder="true" part="org.eclipse.ui.internal.ViewStack@92ef0b" ratio="0.69977427" ratioLeft="620" ratioRight="266" relationship="4" relative="org.eclipse.ui.internal.ViewStack@1f6e926">&#x0A;<folder activePageID="org.eclipse.debug.ui.DebugView" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@92ef0b" ratio="0.69977427" ratioLeft="620" ratioRight="266" relationship="4" relative="org.eclipse.ui.internal.ViewStack@1f6e926">&#x0A;<folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
 <page content="org.eclipse.debug.ui.DebugView" label="Debug"/>
 <page content="org.eclipse.debug.ui.BreakpointView" label="LabelNotFound"/>
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
@@ -274,7 +274,6 @@
 <navigationHistory>
 <editors>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/CoIDE/main.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/CoIDE/stdio/printf.c"/>
 <editor factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory" id="org.coocox.builder.ui.editors.ConfigEditor">
 <org.coocox.builder.ui.editors.ConfigEditor/>
 </editor>
@@ -283,70 +282,26 @@
 <editor factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory" id="org.coocox.builder.ui.editors.ConfigEditor">
 <org.coocox.builder.ui.editors.ConfigEditor/>
 </editor>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/CoIDE/CoOS/kernel/timer.c"/>
+<editor factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory" id="org.coocox.builder.ui.editors.ConfigEditor">
+<org.coocox.builder.ui.editors.ConfigEditor/>
+</editor>
+<editor factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory" id="org.coocox.builder.ui.editors.ConfigEditor">
+<org.coocox.builder.ui.editors.ConfigEditor/>
+</editor>
+<editor factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory" id="org.coocox.builder.ui.editors.ConfigEditor">
+<org.coocox.builder.ui.editors.ConfigEditor/>
+</editor>
+<editor factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory" id="org.coocox.builder.ui.editors.ConfigEditor">
+<org.coocox.builder.ui.editors.ConfigEditor/>
+</editor>
+<editor factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory" id="org.coocox.builder.ui.editors.ConfigEditor">
+<org.coocox.builder.ui.editors.ConfigEditor/>
+</editor>
+<editor factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory" id="org.coocox.builder.ui.editors.ConfigEditor">
+<org.coocox.builder.ui.editors.ConfigEditor/>
+</editor>
 </editors>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="3388" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="3995" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="4501" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="4526" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="4634" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="4087" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="4736" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="4759" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="5600" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="5600" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="4919" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="4991" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="5014" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="5083" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="5375" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="5143" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="5600" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="5568" y="0"/>
-</item>
-<item historyLabel="printf.c" index="1">
-<position info="not_deleted" x="715" y="87"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="5568" y="0"/>
-</item>
 <item historyLabel="main.c" index="0">
 <position info="not_deleted" x="5633" y="0"/>
 </item>
@@ -368,7 +323,7 @@
 <item historyLabel="main.c" index="0">
 <position info="not_deleted" x="5027" y="0"/>
 </item>
-<item historyLabel="Configuration" index="2"/>
+<item historyLabel="Configuration" index="1"/>
 <item historyLabel="main.c" index="0">
 <position info="not_deleted" x="5027" y="0"/>
 </item>
@@ -393,13 +348,13 @@
 <item historyLabel="main.c" index="0">
 <position info="not_deleted" x="5494" y="0"/>
 </item>
-<item historyLabel="gd25q_driver.h" index="3">
+<item historyLabel="gd25q_driver.h" index="2">
 <position/>
 </item>
 <item historyLabel="main.c" index="0">
 <position info="not_deleted" x="5494" y="0"/>
 </item>
-<item historyLabel="gd25q_driver.h" index="3">
+<item historyLabel="gd25q_driver.h" index="2">
 <position info="not_deleted" x="178" y="50"/>
 </item>
 <item historyLabel="main.c" index="0">
@@ -414,7 +369,7 @@
 <item historyLabel="main.c" index="0">
 <position info="not_deleted" x="3946" y="10"/>
 </item>
-<item historyLabel="CoOS.h" index="4">
+<item historyLabel="CoOS.h" index="3">
 <position info="not_deleted" x="2891" y="10"/>
 </item>
 <item historyLabel="main.c" index="0">
@@ -426,9 +381,60 @@
 <item historyLabel="main.c" index="0">
 <position info="not_deleted" x="3841" y="0"/>
 </item>
-<item historyLabel="Configuration" index="5"/>
-<item active="true" historyLabel="main.c" index="0">
+<item historyLabel="Configuration" index="4"/>
+<item historyLabel="main.c" index="0">
 <position info="not_deleted" x="3841" y="0"/>
+</item>
+<item historyLabel="timer.c" index="5">
+<position info="not_deleted" x="8247" y="11"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="3960" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="4121" y="10"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="4786" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="1749" y="0"/>
+</item>
+<item historyLabel="Configuration" index="6"/>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="1749" y="0"/>
+</item>
+<item historyLabel="timer.c" index="5">
+<position info="not_deleted" x="8247" y="11"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="1749" y="0"/>
+</item>
+<item historyLabel="Configuration" index="7"/>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="3888" y="0"/>
+</item>
+<item historyLabel="Configuration" index="8"/>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="4204" y="0"/>
+</item>
+<item historyLabel="Configuration" index="9"/>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="4204" y="0"/>
+</item>
+<item historyLabel="Configuration" index="10"/>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="4204" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="3670" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="4054" y="0"/>
+</item>
+<item historyLabel="Configuration" index="11"/>
+<item active="true" historyLabel="main.c" index="0">
+<position info="not_deleted" x="4054" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -437,10 +443,15 @@
 <actionBarAdvisor/>
 </window>
 <mruList>
-<file factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory" id="org.coocox.builder.ui.editors.ConfigEditor" name="" tooltip="">
-<persistable>
-<org.coocox.builder.ui.editors.ConfigEditor/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" tooltip="Test/main.c">
+<persistable path="/Test/main.c"/>
+</file>
+<file factoryID="org.coocox.component.ui.editors.repository.RepositoryElementFactory" id="org.coocox.builder.ui.editors.repository.RepositoryBrowser" name="Repository" tooltip="Repository">
+<persistable>&#x0A;<subPage/>
 </persistable>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="timer.c" tooltip="CoIDE/CoOS/kernel/timer.c">
+<persistable path="/CoIDE/CoOS/kernel/timer.c"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="CoOS.h" tooltip="CoIDE/CoOS/kernel/CoOS.h">
 <persistable path="/CoIDE/CoOS/kernel/CoOS.h"/>
@@ -448,16 +459,8 @@
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="gd25q_driver.h" tooltip="CoIDE/gd25q_driver.h">
 <persistable path="/CoIDE/gd25q_driver.h"/>
 </file>
-<file factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory" id="org.coocox.builder.ui.editors.ConfigEditor" name="" tooltip="">
-<persistable>
-<org.coocox.builder.ui.editors.ConfigEditor/>
-</persistable>
-</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="printf.c" tooltip="CoIDE/stdio/printf.c">
 <persistable path="/CoIDE/stdio/printf.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="timer.c" tooltip="CoIDE/CoOS/kernel/timer.c">
-<persistable path="/CoIDE/CoOS/kernel/timer.c"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="gd25q_driver.c" tooltip="CoIDE/gd25q_driver.c">
 <persistable path="/CoIDE/gd25q_driver.c"/>
@@ -477,14 +480,14 @@
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="syscalls.c" tooltip="CoIDE/syscalls/syscalls.c">
 <persistable path="/CoIDE/syscalls/syscalls.c"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" tooltip="CoIDE/main.c">
-<persistable path="/CoIDE/main.c"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="timer.c" tooltip="CoIDE/CoOS/kernel/timer.c">
+<persistable path="/CoIDE/CoOS/kernel/timer.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="CoOS.h" tooltip="CoIDE/CoOS/kernel/CoOS.h">
+<persistable path="/CoIDE/CoOS/kernel/CoOS.h"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="syscalls.c" tooltip="CoIDE/syscalls/syscalls.c">
 <persistable path="/CoIDE/syscalls/syscalls.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" tooltip="CoIDE/main.c">
-<persistable path="/CoIDE/main.c"/>
 </file>
 </mruList>
 </workbench>

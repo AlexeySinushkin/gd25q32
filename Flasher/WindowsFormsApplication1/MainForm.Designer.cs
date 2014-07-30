@@ -68,6 +68,7 @@
             this.textBoxCRCStart = new System.Windows.Forms.TextBox();
             this.buttonCorrectCRC = new System.Windows.Forms.Button();
             this.checkBoxCRC = new System.Windows.Forms.CheckBox();
+            this.buttonFlash = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -447,11 +448,22 @@
             this.checkBoxCRC.Text = "в файл";
             this.checkBoxCRC.UseVisualStyleBackColor = true;
             // 
+            // buttonFlash
+            // 
+            this.buttonFlash.Location = new System.Drawing.Point(93, 137);
+            this.buttonFlash.Name = "buttonFlash";
+            this.buttonFlash.Size = new System.Drawing.Size(73, 19);
+            this.buttonFlash.TabIndex = 52;
+            this.buttonFlash.Text = "Flash";
+            this.buttonFlash.UseVisualStyleBackColor = true;
+            this.buttonFlash.Click += new System.EventHandler(this.buttonFlash_Click);
+            // 
             // HDTool2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(791, 694);
+            this.Controls.Add(this.buttonFlash);
             this.Controls.Add(this.checkBoxCRC);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.textBoxCRCStart);
@@ -530,6 +542,7 @@
         private System.Windows.Forms.TextBox textBoxCRCStart;
         private System.Windows.Forms.Button buttonCorrectCRC;
         private System.Windows.Forms.CheckBox checkBoxCRC;
+        private System.Windows.Forms.Button buttonFlash;
     }
 }
 

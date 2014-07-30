@@ -109,8 +109,11 @@ namespace WindowsFormsApplication1
                 int length = sp.BytesToRead;
                 byte[] buf = new byte[length];
                 sp.Read(buf, 0, length);
-                string s = Encoding.ASCII.GetString(buf);
-                addText(s);
+
+                addBytes(buf);
+
+                //string s = Encoding.ASCII.GetString(buf);
+                //addText(s);
 
             }
             catch (Exception ex)
@@ -118,8 +121,18 @@ namespace WindowsFormsApplication1
                 MessageBox.Show(ex.ToString(), "On receive");
             }
         }
+        public delegate void addBytesDelegate(byte[] bytes);
+        public event addBytesDelegate OnBytesAdded;
+
         public delegate void addTextDelegate(string text);
         public event addTextDelegate OnTextAdded;
+        void addBytes(byte[] bytes)
+        {
+            if (OnBytesAdded != null)
+            {
+                OnBytesAdded(bytes);
+            }
+        }
         void addText(string text)
         {
 
@@ -251,6 +264,9 @@ namespace WindowsFormsApplication1
             workThread.IsBackground = true;
             workThread.Start();
         }
+
+
+
         int fmaddressFrom;
         int fmaddressOffset;
         int fmaddressTo;
@@ -571,5 +587,112 @@ namespace WindowsFormsApplication1
                 if (fs != null) fs.Close();
             }
         }
+
+        private void buttonFlash_Click(object sender, EventArgs e)
+        {
+  
+            buttonFlash.Enabled = false;
+            progressBar.Minimum = 0;
+            progressBar.Maximum = File.ReadAllBytes(FileWay.Text).Length;  
+            Thread workThread = new Thread(new ThreadStart(doFlash));
+            workThread.IsBackground = true;
+            workThread.Start();
+        }
+
+        void controllFilling(byte[] bytes)
+        {
+            try
+            {
+                int size = bytes.Length;
+                for (int i = 0; i < bytes.Length;i++ )
+                {
+                    if (bytes[i] == 0xB1)
+                    {
+                        if (size - i >= 10)//10-минимальный размер пакета
+                        {
+                            if (bytes[i + 3] == 4) //write complete
+                            {
+                                fmWaitReply = false;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "On receive FM.L");
+            }
+        }
+        void doFlash()
+        {
+            addBytesDelegate dr=null;
+            try
+            {
+                dr = new addBytesDelegate(controllFilling);
+                this.OnBytesAdded += dr;
+
+                sp.BaseStream.Flush();
+                byte[] file = File.ReadAllBytes(FileWay.Text);
+                int fileSize = file.Length;
+
+
+                for (int i = 0; i < fileSize; i += 256)
+                {
+                    DoUpdateProgress(i);
+                    sp.BaseStream.Flush();
+                    ushort packetSize=2 + 1 + 4 + 256 + 1 + 1;//265
+                    byte[] buf = new byte[1+packetSize];
+                    
+                    buf[0] = 0xB1;
+                    buf[1] = (byte)packetSize;
+                    buf[2] = (byte)(packetSize >> 8);
+                    buf[3] = 3;//Wirte page command
+                    buf[4] = (byte)i;
+                    buf[5] = (byte)(i>>8);
+                    buf[6] = (byte)(i >> 16);
+                    buf[7] = (byte)(i >> 24);
+                    
+                    byte crc = 0;
+                    for (int j = 0; j < 256; j++)
+                    {
+                        crc += file[i + j];
+                        buf[8 + j] = file[i + j];
+                    }
+
+                    buf[8 + 256] = crc;
+                    buf[9 + 256] = (byte)(crc^0xAA);
+
+                    fmWaitReply = true;
+                    sp.Write(buf,0,1+packetSize);
+                    sp.BaseStream.Flush();
+
+                    int sleepCounter = 0;
+                    Thread.Sleep(50);
+                    while (fmWaitReply)
+                    {
+                        Thread.Sleep(100);
+                        sleepCounter++;
+                        if (sleepCounter > 20) break;
+                    }
+                    
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            finally
+            {
+                if (dr != null)
+                {
+                    this.OnBytesAdded -= dr;
+                }
+                DoUpdateProgress(0);
+            }
+            enableButton(buttonFlash);
+        }
+
+
     }
 }
