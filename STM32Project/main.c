@@ -3,8 +3,8 @@
 // подключаем библиотеку CMSIS
 //#include "stm32f10x.h"
 //подключаем CooCox
-#include "OsConfig.h"
-#include "coocox.h"
+//#include "OsConfig.h"
+//#include "coocox.h"
 
 #include "stm32f10x_rcc.h"
 
@@ -19,7 +19,7 @@
 
 //GPIO_InitTypeDef  GPIO_InitStructure;
 #define TASK_STK_SIZE		  128	 		      /*!< Define stack size.					      */
-OS_STK   task_init_Stk[TASK_STK_SIZE];	 	  /*!< Stack of 'task_init' task.		*/
+//OS_STK   task_init_Stk[TASK_STK_SIZE];	 	  /*!< Stack of 'task_init' task.		*/
 void task_init    	(void *pdata);	  /*!< Initialization task.               */
 
 
@@ -57,16 +57,16 @@ void main()
 
   
   //uart_printf ("\r Initial CooCox RTOS...              ");
-  CoInitOS();                               /*!< Initial CooCox RTOS          */
+ // CoInitOS();                               /*!< Initial CooCox RTOS          */
   //uart_printf (" [OK]. \n");
 
   //uart_printf ("\r Create a \"task_init\" task...        ");
-  CoCreateTask(task_init, (void *)0, 10,&task_init_Stk[TASK_STK_SIZE-1], TASK_STK_SIZE);
+ // CoCreateTask(task_init, (void *)0, 10,&task_init_Stk[TASK_STK_SIZE-1], TASK_STK_SIZE);
   //uart_printf (" [OK]. \n");
 
 
   //uart_printf ("\r Start multi-task.                   ");
-  CoStartOS ();
+ // CoStartOS ();
 
   
 
@@ -79,7 +79,7 @@ void task_init(void *pdata)
 {
 
 
-	CoExitTask();	 /*!< Delete 'task_init' task. 	*/
+	//CoExitTask();	 /*!< Delete 'task_init' task. 	*/
 }
 
 

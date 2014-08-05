@@ -78,7 +78,7 @@
             this.FileWay.Name = "FileWay";
             this.FileWay.Size = new System.Drawing.Size(546, 20);
             this.FileWay.TabIndex = 13;
-            this.FileWay.Text = "D:\\Projects\\SCX3400_V3.00.01.19\\130409N9077tst.hd";
+            this.FileWay.Text = "D:\\Projects\\GitHub\\gd25q32\\Flasher\\MA_FIX_NU_SCX-3405_V3.00.01.11.bin";
             // 
             // groupBox2
             // 

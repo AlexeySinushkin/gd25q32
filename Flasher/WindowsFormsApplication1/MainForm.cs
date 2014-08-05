@@ -614,6 +614,13 @@ namespace WindowsFormsApplication1
                             {
                                 fmWaitReply = false;
                             }
+                            else
+                            {
+                                badReplay = true;
+                                int address = bytes[i + 4] | bytes[i + 5]<<8 | bytes[i + 6]<<16;
+                                addText(string.Format("Bad replay on address {0}\r\n", address));
+
+                            }
                         }
                     }
                 }
@@ -623,9 +630,11 @@ namespace WindowsFormsApplication1
                 MessageBox.Show(ex.ToString(), "On receive FM.L");
             }
         }
+bool badReplay = false;
         void doFlash()
         {
             addBytesDelegate dr=null;
+            
             try
             {
                 dr = new addBytesDelegate(controllFilling);
@@ -651,30 +660,40 @@ namespace WindowsFormsApplication1
                     buf[5] = (byte)(i>>8);
                     buf[6] = (byte)(i >> 16);
                     buf[7] = (byte)(i >> 24);
-                    
-                    byte crc = 0;
+
                     for (int j = 0; j < 256; j++)
                     {
-                        crc += file[i + j];
                         buf[8 + j] = file[i + j];
+                    }                    
+
+                    byte crc = 0;
+                    for (int j = 0; j < 264; j++)
+                    {
+                        crc += buf[j];
                     }
 
-                    buf[8 + 256] = crc;
-                    buf[9 + 256] = (byte)(crc^0xAA);
+                    buf[264] = crc;
+                    buf[265] = (byte)(crc^0xAA);
 
                     fmWaitReply = true;
                     sp.Write(buf,0,1+packetSize);
                     sp.BaseStream.Flush();
 
                     int sleepCounter = 0;
-                    Thread.Sleep(50);
+                    Thread.Sleep(10);
                     while (fmWaitReply)
                     {
-                        Thread.Sleep(100);
+                        Thread.Sleep(10);
                         sleepCounter++;
-                        if (sleepCounter > 20) break;
+                        if (sleepCounter > 200) break;
                     }
-                    
+                    if (sleepCounter > 200)
+                    {
+                        int address = i;
+                        addText(string.Format("No answer on address {0}\r\n", address));
+                        break;
+                    }
+                    if (badReplay) break;
                 }
 
             }

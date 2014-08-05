@@ -12,8 +12,9 @@
 
 #define TASK_STK_SIZE		  128	 		      /*!< Define stack size.					      */
 OS_STK   task_init_Stk[TASK_STK_SIZE];	 	  /*!< Stack of 'task_init' task.		*/
-void task_init    	(void *pdata);	  /*!< Initialization task.               */
-
+//void task_init    	(void *pdata);	  /*!< Initialization task.               */
+#define TASK_STK_SIZE2		  64	 		      /*!< Define stack size.					      */
+OS_STK   task_init_Stk2[TASK_STK_SIZE2];	 	  /*!< Stack of 'task_init' task.		*/
 
 
 void RCC_Config()
@@ -75,7 +76,7 @@ void UART_Config(){
   GPIO_Init(GPIOA, &GPIO_InitStructure);
 
   /*Usart init attributes 2400, 8N1*/
-  USART_InitStructure.USART_BaudRate = 4800 ;
+  USART_InitStructure.USART_BaudRate = 115200;
   USART_InitStructure.USART_WordLength = USART_WordLength_8b;
   USART_InitStructure.USART_StopBits = USART_StopBits_1;
   USART_InitStructure.USART_Parity = USART_Parity_No;
@@ -113,12 +114,13 @@ typedef struct
   u16 rxIndex:9;
   u8 txIndex:7;
   bool canListen:1;
+  OS_TID gdTaskID;
   u8 rxBuf[RX_BUF_SIZE];
   u8 txBuf[TX_BUF_SIZE];
 } Env_t;
 
 //extern __IO Env_t Env;
-__IO Env_t Env;
+volatile Env_t Env;
 
 OS_TCID sftmr;
 void PacketTimeOut(void)
@@ -160,8 +162,8 @@ void taskGD(void *pdata){
 
 	while(1){
 		Env.canListen=TRUE;
-		//ждем новый пакет
-		while(Env.rxIndex==0);
+		//ждем новый пакет while(Env.rxIndex==0);
+		CoSuspendTask(Env.gdTaskID);
 
 		if (Env.rxBuf[0]==PACKET_START){
 			//good
@@ -186,12 +188,14 @@ void taskGD(void *pdata){
 				}
 			}
 			else if(Env.rxIndex==packetSizeWithStart){
+				//Пакет пришел. останавливаем таймер и проверяем его
 				StatusType result = CoStopTmr(sftmr);
 				Env.canListen=FALSE;
 				Env.State=Processing;
 				//check CRC
 				u8 crc=0;
-				for (i=1;i<packetSizeWithStart-2;i++){
+				//265-2=263
+				for (i=0;i<packetSizeWithStart-2;i++){
 					crc+=Env.rxBuf[i];
 				}
 				if (crc==Env.rxBuf[packetSizeWithStart-2]&&
@@ -203,7 +207,9 @@ void taskGD(void *pdata){
 								Env.rxBuf[5]<<8 | Env.rxBuf[6]<<16 |
 								Env.rxBuf[7]<<24;
 						GD_WriteEnable();
-						GD_WritePage(address, &Env.rxBuf[8]);
+						u8 *ptr=&(Env.rxBuf[0]);
+						GD_WritePage(address, ptr+8);
+						CoTickDelay(1);
 						GD_ReadPage(address, &GDPage[0]);
 						//check
 						bool badWrite=FALSE;
@@ -226,7 +232,7 @@ void taskGD(void *pdata){
 							Env.txBuf[3]=0x06;
 						}
 						Env.txBuf[8]=0;
-						for (i=1;i<8;i++){
+						for (i=0;i<8;i++){
 							Env.txBuf[8]+=Env.txBuf[i];
 						}
 						Env.txBuf[9]=Env.txBuf[8]^0xAA;
@@ -234,6 +240,10 @@ void taskGD(void *pdata){
 						Env.State=SendingAnswer;
 					}
 					//processPacket();
+				}else{//crc error
+					Env.rxIndex=0;
+					Env.State=WaitingStart;
+					continue;
 				}
 
 			}//Env.rxIndex==packetSizeWithStart
@@ -285,6 +295,7 @@ void USART1_IRQHandler(void)
     		Env.rxBuf[Env.rxIndex]=rxByte;
     		Env.rxIndex++;
     	}
+    	CoAwakeTask(Env.gdTaskID);
 	}
 }
 
@@ -296,8 +307,10 @@ int main(void)
 	GD_Init();
 
 	CoInitOS();
-    CoCreateTask(taskGD, (void *)0, 10,&task_init_Stk[TASK_STK_SIZE-1], TASK_STK_SIZE);
-    //CoCreateTask(taskUART, (void *)0, 10,&task_init_Stk[TASK_STK_SIZE-1], TASK_STK_SIZE);
+	Env.gdTaskID=CoCreateTask(taskGD, (void *)0, 10,
+			&task_init_Stk[TASK_STK_SIZE-1], TASK_STK_SIZE);
+    /*OS_TID tid =  CoCreateTask(taskSender, (void *)0, 10,
+    		&task_init_Stk2[TASK_STK_SIZE2-1], TASK_STK_SIZE2);*/
 	CoStartOS();
     while(1);
 }
