@@ -92,7 +92,7 @@ void UART_Config(){
 }
 
 
-u8 GDPage[256];
+
 #define RX_BUF_SIZE 300
 #define TX_BUF_SIZE 16
 #define PACKET_START 0xB1
@@ -117,6 +117,7 @@ typedef struct
   OS_TID gdTaskID;
   u8 rxBuf[RX_BUF_SIZE];
   u8 txBuf[TX_BUF_SIZE];
+  u8 GDPage[256];
 } Env_t;
 
 //extern __IO Env_t Env;
@@ -149,12 +150,34 @@ void taskSender(void *pdata){
 
 void taskGD(void *pdata){
 
+
+
+
+
 	//создаем таймер таймаута получения 2 секунды хватит
 	sftmr = CoCreateTmr(TMR_TYPE_ONE_SHOT, 200,	0, PacketTimeOut);
 	int i=0;
 
+/*
+	GD_WriteEnable();
+	for (i=0;i<256;i++){
+		Env.rxBuf[8+i]=i*2;
+	}
+	GD_WritePage(0, &(Env.rxBuf[8]));
+	CoTickDelay(1);
+	GD_ReadPage(0, &Env.GDPage[0]);
+	//check
+	bool badWrite1=FALSE;
+	for (i=0;i<256;i++){
+		if (Env.GDPage[i]!=Env.rxBuf[8+i]){
+			badWrite1=TRUE;
+			break;
+		}
+	}
+*/
 
-	  GD_WriteEnable();
+
+	  //GD_WriteEnable();
 	  u8 GD_StateLow = GD_GetStatusLow();
 
 	  Env.State=WaitingStart;
@@ -210,11 +233,11 @@ void taskGD(void *pdata){
 						u8 *ptr=&(Env.rxBuf[0]);
 						GD_WritePage(address, ptr+8);
 						CoTickDelay(1);
-						GD_ReadPage(address, &GDPage[0]);
+						GD_ReadPage(address, &Env.GDPage[0]);
 						//check
 						bool badWrite=FALSE;
 						for (i=0;i<256;i++){
-							if (GDPage[i]!=Env.rxBuf[8+i]){
+							if (Env.GDPage[i]!=Env.rxBuf[8+i]){
 								badWrite=TRUE;
 								break;
 							}

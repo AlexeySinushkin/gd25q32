@@ -48,7 +48,7 @@ void GD_Init(void){
           SPI_InitStructure.SPI_CPHA = SPI_CPHA_2Edge;
           SPI_InitStructure.SPI_NSS = SPI_NSS_Soft;
           SPI_InitStructure.SPI_FirstBit = SPI_FirstBit_MSB;
-          SPI_InitStructure.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_8;
+          SPI_InitStructure.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_256;
           SPI_InitStructure.SPI_CRCPolynomial = 8;
           SPI_Init(SPI1, &SPI_InitStructure);   
           
@@ -111,7 +111,8 @@ void GD_WritePage(u32 address, u8* data)
 		u16 i=0;
 		for (i=0; i<256; i++){
 			while (SPI_I2S_GetFlagStatus(SPI1, SPI_I2S_FLAG_TXE) == RESET);
-			SPI_I2S_SendData(SPI1,*(data+i));
+			u8 d = *(data+i);
+			SPI_I2S_SendData(SPI1, d);
 			 
 			//receive dummy
 			receive_dummy();
