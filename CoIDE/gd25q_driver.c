@@ -48,7 +48,7 @@ void GD_Init(void){
           SPI_InitStructure.SPI_CPHA = SPI_CPHA_2Edge;
           SPI_InitStructure.SPI_NSS = SPI_NSS_Soft;
           SPI_InitStructure.SPI_FirstBit = SPI_FirstBit_MSB;
-          SPI_InitStructure.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_256;
+          SPI_InitStructure.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_16;
           SPI_InitStructure.SPI_CRCPolynomial = 8;
           SPI_Init(SPI1, &SPI_InitStructure);   
           
@@ -196,6 +196,46 @@ void GD_SendCommand1(u8 command){
      //receive dummy
      receive_dummy();    
      cd();  
+}
+
+
+void GD_SendCommand1Address3(u8 command, u32 address){
+     cs();
+	 //send command
+     while (SPI_I2S_GetFlagStatus(SPI1, SPI_I2S_FLAG_TXE) == RESET);
+     SPI_I2S_SendData(SPI1,command);
+     //receive dummy
+     receive_dummy();
+
+
+			//send 3th param byte
+	  while (SPI_I2S_GetFlagStatus(SPI1, SPI_I2S_FLAG_TXE) == RESET);
+	  SPI_I2S_SendData(SPI1,(u8)(address>>16));
+
+		 //receive dummy
+			receive_dummy();
+
+			//send 2nd param byte
+	  while (SPI_I2S_GetFlagStatus(SPI1, SPI_I2S_FLAG_TXE) == RESET);
+	  SPI_I2S_SendData(SPI1,(u8)(address>>8));
+
+		 //receive dummy
+			receive_dummy();
+
+			//send 1th param byte
+	  while (SPI_I2S_GetFlagStatus(SPI1, SPI_I2S_FLAG_TXE) == RESET);
+	  SPI_I2S_SendData(SPI1,(u8)address);
+
+		 //receive dummy
+			receive_dummy();
+
+
+     cd();
+}
+
+void GD_EraseSector(u32 address)
+{
+	GD_SendCommand1Address3(0x20, address);
 }
 
 void GD_WriteEnable()

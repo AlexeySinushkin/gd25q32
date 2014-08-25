@@ -158,11 +158,15 @@ void taskGD(void *pdata){
 	sftmr = CoCreateTmr(TMR_TYPE_ONE_SHOT, 200,	0, PacketTimeOut);
 	int i=0;
 
+
+	//GD_WriteEnable();
+	//GD_EraseSector(0);
+	//CoTickDelay(2);
 /*
-	GD_WriteEnable();
 	for (i=0;i<256;i++){
-		Env.rxBuf[8+i]=i*2;
+		Env.rxBuf[8+i]=i;
 	}
+	GD_WriteEnable();
 	GD_WritePage(0, &(Env.rxBuf[8]));
 	CoTickDelay(1);
 	GD_ReadPage(0, &Env.GDPage[0]);
@@ -171,7 +175,6 @@ void taskGD(void *pdata){
 	for (i=0;i<256;i++){
 		if (Env.GDPage[i]!=Env.rxBuf[8+i]){
 			badWrite1=TRUE;
-			break;
 		}
 	}
 */
@@ -203,7 +206,7 @@ void taskGD(void *pdata){
 			//0xB1 0x01 0x09
 			if (Env.rxIndex>3 && packetSizeWithStart==0){
 				packetSizeWithStart=Env.rxBuf[1]+
-						Env.rxBuf[2]*256+1;
+						(Env.rxBuf[2]*256)+1;
 				if (packetSizeWithStart>RX_BUF_SIZE-6){
 					Env.rxIndex=0;
 					Env.State=WaitingStart;
@@ -229,11 +232,23 @@ void taskGD(void *pdata){
 						u32 address=Env.rxBuf[4]|
 								Env.rxBuf[5]<<8 | Env.rxBuf[6]<<16 |
 								Env.rxBuf[7]<<24;
+
+						//очищаем сектор
+						if (address%4096==0){
+							//GD_WriteEnable();
+							//GD_EraseSector(address);
+							//CoTickDelay(20);
+						}
+
 						GD_WriteEnable();
-						u8 *ptr=&(Env.rxBuf[0]);
-						GD_WritePage(address, ptr+8);
-						CoTickDelay(1);
+						//CoSchedLock();
+						GD_WritePage(address, &(Env.rxBuf[8]));
+						while(GD_GetStatusLow()&1 == 1) //wait WIP flag
+						{
+							CoTickDelay(1);
+						}
 						GD_ReadPage(address, &Env.GDPage[0]);
+						//CoSchedUnlock();
 						//check
 						bool badWrite=FALSE;
 						for (i=0;i<256;i++){

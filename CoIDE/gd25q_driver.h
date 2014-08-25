@@ -12,7 +12,7 @@ extern void GD_ReadPage(u32 address, u8* result);
 extern void GD_WriteEnable();
 extern u8 GD_GetStatusLow();
 extern u8 GD_GetStatusHigh();
-
+extern void GD_EraseSector(u32 address);
 
 #ifdef __cplusplus
 }

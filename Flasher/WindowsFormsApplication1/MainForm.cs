@@ -599,35 +599,100 @@ namespace WindowsFormsApplication1
             workThread.Start();
         }
 
+        Queue<byte> replayBytes = new Queue<byte>();
         void controllFilling(byte[] bytes)
         {
-            try
+            lock (replayBytes)
             {
-                int size = bytes.Length;
-                for (int i = 0; i < bytes.Length;i++ )
+                foreach (byte b in bytes)
                 {
-                    if (bytes[i] == 0xB1)
+                    replayBytes.Enqueue(b);
+                }
+                try
+                {
+                    int size = replayBytes.Count;
+                    if (replayBytes.Count > 9)
                     {
-                        if (size - i >= 10)//10-минимальный размер пакета
+                        for (int i = 0; i < size; i++)
                         {
-                            if (bytes[i + 3] == 4) //write complete
+                            if (replayBytes.Count == 0) break;
+                            if (replayBytes.Peek() != 0xB1)
                             {
-                                fmWaitReply = false;
-                            }
-                            else
-                            {
-                                badReplay = true;
-                                int address = bytes[i + 4] | bytes[i + 5]<<8 | bytes[i + 6]<<16;
-                                addText(string.Format("Bad replay on address {0}\r\n", address));
-
+                                replayBytes.Dequeue();
                             }
                         }
                     }
                 }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString(), "On receive FM.L");
+                }
             }
-            catch (Exception ex)
+        }
+        bool checkPacket()
+        {
+            lock (replayBytes)
             {
-                MessageBox.Show(ex.ToString(), "On receive FM.L");
+                if (replayBytes.Count>3 && 
+                    replayBytes.Peek() != 0xB1) return false;
+
+                int arrSize = replayBytes.Count;
+                byte[] bytes = replayBytes.ToArray();
+                int packSize = 0;
+                if (bytes.Length > 3)
+                {
+                    packSize = bytes[1] + (bytes[2] * 256) + 1;
+                }
+                
+                //пришел не весь пакет
+                if (packSize > arrSize) return false;
+                //слишком маленький пакет
+                if (packSize < 10) return false;
+                //не сошелся СРС
+                byte crc = 0;
+                for (int i = 0; i < packSize-2; i++)
+                {
+                    crc += bytes[i];
+                }
+                if (crc != bytes[packSize - 2]
+                    || (byte)(crc ^ 0xAA) != bytes[packSize - 1])
+                {
+                    return false;
+                }
+                else
+                {
+
+                }
+
+                if (bytes[3] == 4) //write complete
+                {
+                    fmWaitReply = false;
+                    if (packSize <= arrSize)
+                    {
+                        for (int i = 0; i < packSize; i++) replayBytes.Dequeue();
+                    }
+                    return true;
+                }
+                else if (bytes[3] == 6)
+                {
+                    fmWaitReply = false;
+                    badReplay = true;
+                    int address = bytes[4] | bytes[5] << 8 | bytes[6] << 16;
+                    addText(string.Format("Bad replay on address {0}\r\n", address));
+                    if (packSize <= arrSize)
+                    {
+                        for (int i = 0; i < packSize; i++) replayBytes.Dequeue();
+                    }
+                    return true;
+                }
+                else
+                {
+                    if (packSize <= arrSize)
+                    {
+                        for (int i = 0; i < packSize; i++) replayBytes.Dequeue();
+                    }
+                }
+                return false;
             }
         }
 bool badReplay = false;
@@ -643,10 +708,13 @@ bool badReplay = false;
                 sp.BaseStream.Flush();
                 byte[] file = File.ReadAllBytes(FileWay.Text);
                 int fileSize = file.Length;
-
-
+                
+                int tryTimes = 0;
                 for (int i = 0; i < fileSize; i += 256)
                 {
+                    tryTimes = 0;
+                nexTry:
+                    badReplay = false;
                     DoUpdateProgress(i);
                     sp.BaseStream.Flush();
                     ushort packetSize=2 + 1 + 4 + 256 + 1 + 1;//265
@@ -683,15 +751,22 @@ bool badReplay = false;
                     Thread.Sleep(10);
                     while (fmWaitReply)
                     {
+                        checkPacket();
                         Thread.Sleep(10);
                         sleepCounter++;
                         if (sleepCounter > 200) break;
                     }
                     if (sleepCounter > 200)
                     {
-                        int address = i;
-                        addText(string.Format("No answer on address {0}\r\n", address));
-                        break;
+                        if (++tryTimes < 3)
+                        {
+                            goto nexTry;
+                        }
+                        else
+                        {
+                            addText(string.Format("No answer on address {0}\r\n", i));
+                            break;
+                        }
                     }
                     if (badReplay) break;
                 }
@@ -699,6 +774,7 @@ bool badReplay = false;
             }
             catch (Exception ex)
             {
+                //throw;
                 MessageBox.Show(ex.ToString());
             }
             finally
