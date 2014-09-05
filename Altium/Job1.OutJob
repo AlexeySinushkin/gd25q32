@@ -4,7 +4,7 @@ Version=1.0
 [OutputGroup1]
 Name=Job1.OutJob
 Description=
-TargetOutputMedium=Copy of New Print Job
+TargetOutputMedium=Folder Structure
 VariantName=[No Variations]
 VariantScope=1
 CurrentConfigurationName=
@@ -102,7 +102,7 @@ OutputName4=TopMirrorBig
 OutputCategory4=Documentation
 OutputDocumentPath4=
 OutputVariantName4=
-OutputEnabled4=1
+OutputEnabled4=0
 OutputEnabled4_OutputMedium1=0
 OutputEnabled4_OutputMedium2=0
 OutputEnabled4_OutputMedium3=0
@@ -120,6 +120,34 @@ Configuration4_Name4=OutputConfigurationParameter4
 Configuration4_Item4=CArc=Full|CFill=Full|Comment=Full|Coordinate=Full|CPad=Full|CRegion=Full|CText=Full|CTrack=Full|CVia=Full|DDSymbolKind=0|DDSymbolSize=500000|DDSymbolSortKind=0|Designator=Full|Dimension=Full|DLayer1=TopLayer|DLayer2=BottomLayer|FArc=Full|FFill=Full|FPad=Full|FRegion=Full|FText=Full|FTrack=Full|FVia=Full|Layer=KeepOutLayer|Polygon=Full|PrintOutIndex=0|Record=PcbPrintLayer
 Configuration4_Name5=OutputConfigurationParameter5
 Configuration4_Item5=CArc=Full|CFill=Full|Comment=Full|Coordinate=Full|CPad=Full|CRegion=Full|CText=Full|CTrack=Full|CVia=Full|DDSymbolKind=0|DDSymbolSize=500000|DDSymbolSortKind=0|Designator=Full|Dimension=Full|DLayer1=TopLayer|DLayer2=BottomLayer|FArc=Full|FFill=Full|FPad=Full|FRegion=Full|FText=Full|FTrack=Full|FVia=Full|Layer=MultiLayer|Polygon=Full|PrintOutIndex=0|Record=PcbPrintLayer
+OutputType5=Gerber
+OutputName5=Gerber Files
+OutputCategory5=Fabrication
+OutputDocumentPath5=PCB1.PcbDoc
+OutputVariantName5=
+OutputEnabled5=0
+OutputEnabled5_OutputMedium1=0
+OutputEnabled5_OutputMedium2=0
+OutputEnabled5_OutputMedium3=0
+OutputEnabled5_OutputMedium4=0
+OutputEnabled5_OutputMedium5=0
+OutputDefault5=0
+Configuration5_Name1=OutputConfigurationParameter1
+Configuration5_Item1=AddToAllPlots.Set=SerializeLayerHash.Version~2,ClassName~TLayerToBoolean|CentrePlots=False|DrillDrawingSymbol=GraphicsSymbol|DrillDrawingSymbolSize=500000|EmbeddedApertures=True|FilmBorderSize=10000000|FilmXSize=200000000|FilmYSize=160000000|FlashAllFills=False|FlashPadShapes=True|G54OnApertureChange=False|GenerateDRCRulesFile=True|GenerateReliefShapes=True|GerberUnit=Metric|IncludeUnconnectedMidLayerPads=False|LeadingAndTrailingZeroesMode=SuppressLeadingZeroes|MaxApertureSize=2500000|MinusApertureTolerance=39|Mirror.Set=SerializeLayerHash.Version~2,ClassName~TLayerToBoolean|MirrorDrillDrawingPlots=False|MirrorDrillGuidePlots=False|NumberOfDecimals=2|OptimizeChangeLocationCommands=True|OriginPosition=Relative|Panelize=False|Plot.Set=SerializeLayerHash.Version~2,ClassName~TLayerToBoolean,16973830~1,16973832~1,16973834~1,16777217~1,16842751~1,16973835~1,16973833~1,16973831~1,16973837~1,16973848~1,16973849~1|PlotPositivePlaneLayers=False|PlotUsedDrillDrawingLayerPairs=False|PlotUsedDrillGuideLayerPairs=False|PlusApertureTolerance=39|Record=GerberView|SoftwareArcs=False|Sorted=False
+OutputType6=NC Drill
+OutputName6=NC Drill Files
+OutputCategory6=Fabrication
+OutputDocumentPath6=PCB1.PcbDoc
+OutputVariantName6=
+OutputEnabled6=1
+OutputEnabled6_OutputMedium1=0
+OutputEnabled6_OutputMedium2=1
+OutputEnabled6_OutputMedium3=0
+OutputEnabled6_OutputMedium4=0
+OutputEnabled6_OutputMedium5=0
+OutputDefault6=0
+Configuration6_Name1=OutputConfigurationParameter1
+Configuration6_Item1=BoardEdgeRoutToolDia=2000000|GenerateBoardEdgeRout=False|GenerateDrilledSlotsG85=False|GenerateEIADrillFile=True|GenerateSeparatePlatedNonPlatedFiles=False|NumberOfDecimals=2|NumberOfUnits=4|OptimizeChangeLocationCommands=True|OriginPosition=Relative|Record=DrillView|Units=Metric|ZeroesMode=SuppressTrailingZeroes
 
 [PublishSettings]
 OutputFilePath1=
@@ -139,13 +167,13 @@ MarkPins1=1
 MarkNetLabels1=1
 MarkPortsId1=1
 GenerateTOC=1
-OutputFilePath2=
+OutputFilePath2=D:\Projects\GitHub\gd25q32\Altium\Project Outputs for Project\
 ReleaseManaged2=1
-OutputBasePath2=
+OutputBasePath2=Project Outputs for Project
 OutputPathMedia2=
 OutputPathOutputer2=[Output Type]
 OutputFileName2=
-OpenOutput2=1
+OpenOutput2=0
 OutputFilePath3=
 ReleaseManaged3=1
 OutputBasePath3=
@@ -181,9 +209,9 @@ WmvQuality3=80
 [GeneratedFilesSettings]
 RelativeOutputPath1=
 OpenOutputs1=1
-RelativeOutputPath2=
-OpenOutputs2=1
-AddToProject2=1
+RelativeOutputPath2=D:\Projects\GitHub\gd25q32\Altium\Project Outputs for Project\
+OpenOutputs2=0
+AddToProject2=0
 TimestampFolder2=0
 UseOutputName2=0
 OpenODBOutput2=0
