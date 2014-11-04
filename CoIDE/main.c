@@ -234,11 +234,15 @@ void taskGD(void *pdata){
 								Env.rxBuf[7]<<24;
 
 						//очищаем сектор
+						/*
 						if (address%4096==0){
-							//GD_WriteEnable();
-							//GD_EraseSector(address);
-							//CoTickDelay(20);
-						}
+							GD_WriteEnable();
+							GD_EraseSector(address);
+							while(GD_GetStatusLow()&1 == 1)
+							{
+								CoTickDelay(2);
+							}
+						}*/
 
 						GD_WriteEnable();
 						//CoSchedLock();
