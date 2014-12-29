@@ -13,9 +13,10 @@
 #define TASK_STK_SIZE		  128	 		      /*!< Define stack size.					      */
 OS_STK   task_init_Stk[TASK_STK_SIZE];	 	  /*!< Stack of 'task_init' task.		*/
 //void task_init    	(void *pdata);	  /*!< Initialization task.               */
-#define TASK_STK_SIZE2		  64	 		      /*!< Define stack size.					      */
-OS_STK   task_init_Stk2[TASK_STK_SIZE2];	 	  /*!< Stack of 'task_init' task.		*/
-
+//#define TASK_STK_SIZE2		  64	 		      /*!< Define stack size.					      */
+//OS_STK   task_init_Stk2[TASK_STK_SIZE2];	 	  /*!< Stack of 'task_init' task.		*/
+#define TASK_STK_SIZE3		  64	 		      /*!< Define stack size.					      */
+OS_STK   task_init_Stk3[TASK_STK_SIZE3];
 
 void RCC_Config()
 {
@@ -132,7 +133,7 @@ void PacketTimeOut(void)
  }
  //StatusType result = CoStopTmr(sftmr);
 }
-
+/*
 void taskSender(void *pdata){
 	int i=0;
 	while(1){
@@ -147,6 +148,24 @@ void taskSender(void *pdata){
 		CoTickDelay(500);//ждем 5 сек.
 	}
 }
+
+*/
+void taskBlink(void *pdata){
+
+    GPIO_InitTypeDef  GPIO_InitStructure;
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_2;
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_10MHz;
+    GPIO_Init(GPIOA, &GPIO_InitStructure);
+
+	while(1){
+		GPIOA->BRR=GPIO_Pin_2;
+		CoTickDelay(50);//ждем 0.5 сек.
+		GPIOA->BSRR=GPIO_Pin_2;
+		CoTickDelay(50);
+	}
+}
+
 
 void taskGD(void *pdata){
 
@@ -213,7 +232,8 @@ void taskGD(void *pdata){
 					continue;
 				}
 			}
-			else if(Env.rxIndex==packetSizeWithStart){
+			else if(Env.rxIndex==packetSizeWithStart
+					&& Env.rxIndex>3){
 				//Пакет пришел. останавливаем таймер и проверяем его
 				StatusType result = CoStopTmr(sftmr);
 				Env.canListen=FALSE;
@@ -247,7 +267,9 @@ void taskGD(void *pdata){
 						GD_WriteEnable();
 						//CoSchedLock();
 						GD_WritePage(address, &(Env.rxBuf[8]));
-						while(GD_GetStatusLow()&1 == 1) //wait WIP flag
+						u8 cnt=200;
+						while(GD_GetStatusLow()&1 == 1//wait WIP flag
+								&& --cnt>0)
 						{
 							CoTickDelay(1);
 						}
@@ -353,6 +375,8 @@ int main(void)
 			&task_init_Stk[TASK_STK_SIZE-1], TASK_STK_SIZE);
     /*OS_TID tid =  CoCreateTask(taskSender, (void *)0, 10,
     		&task_init_Stk2[TASK_STK_SIZE2-1], TASK_STK_SIZE2);*/
+    CoCreateTask(taskBlink, (void *)0, 10,
+    		&task_init_Stk3[TASK_STK_SIZE3-1], TASK_STK_SIZE3);
 	CoStartOS();
     while(1);
 }
